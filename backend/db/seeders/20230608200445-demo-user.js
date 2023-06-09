@@ -24,17 +24,23 @@ module.exports = {
       {
         email: 'demo@user.io',
         username: 'Demo-lition',
-        hashedPassword: bcrypt.hashSync('password')   //generate salted and hashed password.
+        hashedPassword: bcrypt.hashSync('password'),   //generate salted and hashed password.
+        lastName: 'Demo',
+        firstName: 'lition'
       },
       {
         email: 'user1@user.io',
         username: 'FakeUser1',
-        hashedPassword: bcrypt.hashSync('password2')
+        hashedPassword: bcrypt.hashSync('password2'),
+        lastName: 'Fake',
+        firstName: 'Fakefirstname'
       },
       {
         email: 'user2@user.io',
         username: 'FakeUser2',
-        hashedPassword: bcrypt.hashSync('password3')
+        hashedPassword: bcrypt.hashSync('password3'),
+        lastName: 'Fake2',
+        firstName: 'Fakefirstname2'
       }
     ], {});
   },
