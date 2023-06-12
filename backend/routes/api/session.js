@@ -44,10 +44,10 @@ router.post(
 
     const safeUser = {
       id: user.id,
+      firstName: user.firstName,
+      lastName: user.lastName,
       email: user.email,
       username: user.username,
-      firstName: user.firstName,
-      lastName: user.lastName
     };
 
     await setTokenCookie(res, safeUser);
@@ -69,8 +69,8 @@ router.delete(
   }
 );
 
-
-
+//Get Current user
+//Get session user: GET /api/session
 // Restore session user
 router.get(
   '/',
@@ -79,6 +79,8 @@ router.get(
     if (user) {
       const safeUser = {
         id: user.id,
+        firstName: user.firstName,
+        lastName: user.lastName,
         email: user.email,
         username: user.username,
       };
