@@ -33,8 +33,10 @@ const setTokenCookie = (res, user) => {
 
   return token;
 };
-//Make sure to keep the restoreUser middleware connected before any other middleware or route handlers are connected to the router.
-//The restoreUser middleware will be connected to the API router so that all API route handlers will check if there is a current user logged in or not.
+//Make sure to keep the restoreUser middleware connected before any
+// other middleware or route handlers are connected to the router.
+//The restoreUser middleware will be connected to the API router
+// so that all API route handlers will check if there is a current user logged in or not.
 const restoreUser = (req, res, next) => {
   // token parsed from cookies
   const { token } = req.cookies;
