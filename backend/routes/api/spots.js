@@ -268,8 +268,12 @@ router.delete('/:id', async (req, res, next) => {
   }
 
   if (oneSpot.ownerId !== user.id) {
-    res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    // res.statusCode = 403;
+    // res.json({ 'message': "Forbidden" })
+
+    const err = new Error('Forbidden')
+    err.statusCode = 403
+    return next(err)
   }
 
   await oneSpot.destroy();
