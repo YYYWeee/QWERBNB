@@ -181,11 +181,17 @@ router.post('/', requireAuth, createSpotChecker, async (req, res) => {
 router.post('/:id/images', requireAuth, async (req, res) => {
   const { url, preview } = req.body;
   const { id } = req.params;
+  const { user } = req;
   let oneSpot = await Spot.findByPk(id)
   if (!oneSpot) {
     res.statusCode = 404
     res.json({ 'message': "Spot couldn't be found" })
   }
+  if (oneSpot.ownerId !== user.id) {
+    res.statusCode = 403;
+    res.json({ 'message': "Forbidden" })
+  }
+
   let newImage = await SpotImage.create({
     spotId: id,
     url: url,
