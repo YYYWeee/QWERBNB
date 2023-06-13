@@ -172,6 +172,7 @@ router.post('/', requireAuth, createSpotChecker, async (req, res) => {
     description: description,
     price: price
   })
+  res.statusCode = 201;
   res.json(newSpot)
 })
 
