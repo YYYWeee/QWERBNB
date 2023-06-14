@@ -204,7 +204,7 @@ router.post('/:id/images', requireAuth, async (req, res) => {
   const { url, preview } = req.body;
   const { user } = req;
   const { id } = req.params;
-  const { user } = req;
+
   let oneSpot = await Spot.findByPk(id)
   if (!oneSpot) {
     res.statusCode = 404
