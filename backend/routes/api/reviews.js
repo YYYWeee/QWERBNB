@@ -78,6 +78,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 //POST reviews/:id/images
 router.post('/:id/images', requireAuth, async (req, res, next) => {
   const { url } = req.body;
+  const { user } = req;
   const oneReview = await Review.findByPk(req.params.id, {
     include:
       [
@@ -91,13 +92,18 @@ router.post('/:id/images', requireAuth, async (req, res, next) => {
     res.statusCode = 404
     res.json({ "message": "Review couldn't be found" })
   }
-  if (oneReview.userId !== user.id) {
+  // if (oneReview.userId !== user.id) {
+  //   const err = new Error('Forbidden')
+  //   err.statusCode = 403
+  //   return next(err)
+  // }
+
+  const reviewPOJO = oneReview.toJSON();
+  if (reviewPOJO.userId !== user.id) {
     const err = new Error('Forbidden')
     err.statusCode = 403
     return next(err)
   }
-
-  const reviewPOJO = oneReview.toJSON();
   let count = 0;
   reviewPOJO.ReviewImages.forEach(image => {
     count += 1;
