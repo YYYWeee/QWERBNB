@@ -91,6 +91,12 @@ router.post('/:id/images', requireAuth, async (req, res, next) => {
     res.statusCode = 404
     res.json({ "message": "Review couldn't be found" })
   }
+  if (oneReview.userId !== user.id) {
+    const err = new Error('Forbidden')
+    err.statusCode = 403
+    return next(err)
+  }
+
   const reviewPOJO = oneReview.toJSON();
   let count = 0;
   reviewPOJO.ReviewImages.forEach(image => {
