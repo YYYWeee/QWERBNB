@@ -14,8 +14,19 @@ const queryValidator = [
   check('maxLat').optional().isNumeric().withMessage('Maximum latitude is invalid'),
   check('minLng').optional().isNumeric().withMessage('Minimum longitude is invalid'),
   check('maxLng').optional().isNumeric().withMessage('Maximum longitude is invalid'),
-  check('minPrice').optional().isNumeric().withMessage('Minimum price must be greater than or equal to 0'),
-  check('maxPrice').optional().isNumeric().withMessage('Maximum price must be greater than or equal to 0'),
+  check('minPrice').optional().isNumeric().withMessage('Minimum price must be greater than or equal to 0').custom((value) => {
+    if (value < 0) {
+      throw new Error('Minimum price must be greater than or equal to 0')
+    }
+  }),
+  check('maxPrice').optional().isNumeric().withMessage('Maximum price must be greater than or equal to 0').custom((value) => {
+    if (value < 0) {
+      throw new Error('Maximum price must be greater than or equal to 0')
+    }
+  }
+
+  ),
+
   handleValidationErrors
 ]
 
