@@ -47,7 +47,7 @@ module.exports = {
       {
         spotId: 4,
         url: 'https://reviewimage6.com',
-        preview: true
+        preview: false
       },
       {
         spotId: 5,
@@ -60,7 +60,7 @@ module.exports = {
         preview: true
       },
       {
-        spotId: 5,
+        spotId: 4,
         url: 'https://reviewimage9.com',
         preview: true
       },
