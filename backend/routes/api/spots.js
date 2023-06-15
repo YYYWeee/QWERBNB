@@ -427,9 +427,9 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     // res.json({ 'message': "Forbidden" })
 
     //important!!!!!!
-    const err = new Error('Forbidden')
-    err.statusCode = 403
-    return next(err)
+
+    res.statusCode = 403;
+    res.json({ 'message': "Forbidden" })
   }
 
   await oneSpot.destroy();
