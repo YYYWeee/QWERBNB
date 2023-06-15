@@ -8,8 +8,8 @@ const { handleValidationErrors } = require('../../utils/validation');
 
 
 const queryValidator = [
-  check('page').optional().isInt({ min: 1, max: 10 }).withMessage('Page must be greater than or equal to 1'),
-  check('size').optional().isInt({ min: 1, max: 20 }).withMessage('Size must be greater than or equal to 1'),
+  check('page').optional().isInt({ min: 1, max: 10 }).withMessage('Page must be greater than or equal to 1 & less than 10'),
+  check('size').optional().isInt({ min: 1, max: 20 }).withMessage('Size must be greater than or equal to 1 & less than 20'),
   check('minLat').optional().isNumeric().withMessage('Minimum latitude is invalid'),
   check('maxLat').optional().isNumeric().withMessage('Maximum latitude is invalid'),
   check('minLng').optional().isNumeric().withMessage('Minimum longitude is invalid'),
@@ -23,10 +23,7 @@ const queryValidator = [
     if (value < 0) {
       throw new Error('Maximum price must be greater than or equal to 0')
     }
-  }
-
-  ),
-
+  }),
   handleValidationErrors
 ]
 
@@ -42,6 +39,7 @@ router.get('/', queryValidator, async (req, res, next) => {
   const where = {};
   pagination.limit = size;
   pagination.offset = size * (page - 1);
+
   if (minLat) {
     where.lat = {
       [Op.gte]: minLat
@@ -62,32 +60,13 @@ router.get('/', queryValidator, async (req, res, next) => {
       [Op.lte]: maxLng
     }
   }
-
-  if (maxPrice < 0) {
-    res.statusCode = 400
-    return res.json({
-      message: "Bad request",
-      errors: {
-        maxPrice: "Maximum price must be greater than or equal to 0"
-      }
-    })
-  }
-  else {
+  if (maxPrice) {
     where.price = {
       [Op.lte]: maxPrice
     }
   }
 
-  if (minPrice < 0) {
-    res.statusCode = 400
-    return res.json({
-      message: "Bad request",
-      errors: {
-        maxPrice: "Minimum price must be greater than or equal to 0"
-      }
-    })
-
-  } else {
+  if (minPrice) {
     where.price = {
       [Op.gte]: minPrice
     }
@@ -96,12 +75,12 @@ router.get('/', queryValidator, async (req, res, next) => {
 
   const allSpots = await Spot.findAll({
     where,
+    ...pagination,
     include: [{
       model: SpotImage,
       attributes: ['url', 'preview'],
       // limit: 1
-    }],
-    ...pagination
+    }]
   });
   for (let i = 0; i < allSpots.length; i++) {
     const reviews = await allSpots[i].getReviews();  //reviews is an array
@@ -132,8 +111,24 @@ router.get('/', queryValidator, async (req, res, next) => {
 
     delete spot.SpotImages;
   })
-  res.json({ Spots: spotList })
+
+  res.json({
+    Spots: spotList,
+    page: page,
+    size: size
+  })
 })
+
+
+
+
+
+
+
+
+
+
+
 
 //Get all Spots owned by the Current User
 router.get('/current', requireAuth, async (req, res) => {
@@ -180,7 +175,12 @@ router.get('/current', requireAuth, async (req, res) => {
     delete spot.SpotImages;
   })
 
-  res.json({ Spots: spotList })
+
+
+  // res.json(spotList)
+  res.json({
+    Spots: spotList
+  })
 })
 
 //Get details of a Spot from an id
