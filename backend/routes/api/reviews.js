@@ -144,6 +144,17 @@ router.put('/:id', requireAuth, validateEditReview, async (req, res, next) => {
   const { review, stars } = req.body;
   const { user } = req;
   let oneReview = await Review.findByPk(req.params.id);
+  if (!oneReview) {
+    res.statusCode = 404
+    res.json({ 'message': "Review couldn't be found" })
+  }
+
+  if (oneReview.userId !== user.id) {
+    const err = new Error('Forbidden')
+    err.statusCode = 403
+    return next(err)
+  }
+
 
   let setObj = {}
   if (review) {
