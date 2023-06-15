@@ -6,36 +6,33 @@ const { check } = require('express-validator');
 const { handleValidationErrors } = require('../../utils/validation');
 
 
+//Delete a Spot Image
 
-
-//Delete a Review Image
-//DELETE review-images/:id
 router.delete('/:id', requireAuth, async (req, res, next) => {
   const { user } = req;
-  const oneReviewImage = await ReviewImage.findByPk(req.params.id, {
+  const oneSpotImage = await SpotImage.findByPk(req.params.id, {
     include: [
       {
-        model: Review,
-        attributes: ['userId']
+        model: Spot,
+        attributes: ['ownerId']
       }
     ]
   });
 
-  if (!oneReviewImage) {
-    const err = new Error("Review image couldn't be found")
+  if (!oneSpotImage) {
+    const err = new Error("Spot Image couldn't be found")
     err.statusCode = 404
     return next(err)
   }
-  let oneReviewImagePOJO = oneReviewImage.toJSON();
-  if (oneReviewImagePOJO.Review.userId != user.id) {
+  let oneSpotImagePOJO = oneSpotImage.toJSON();
+  if (oneSpotImagePOJO.Spot.ownerId != user.id) {
     res.statusCode = 403;
     res.json({ 'message': "Forbidden" })
   }
-  // console.log(oneReviewImagePOJO)
-
-
-  await oneReviewImage.destroy();
+  //pending testing
+  await oneSpotImage.destroy();
   res.json({ "message": "Successfully deleted" })
+
 
 })
 
