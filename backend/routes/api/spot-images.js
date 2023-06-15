@@ -29,7 +29,6 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     res.statusCode = 403;
     res.json({ 'message': "Forbidden" })
   }
-  //pending testing
   await oneSpotImage.destroy();
   res.json({ "message": "Successfully deleted" })
 

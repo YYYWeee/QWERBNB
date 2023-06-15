@@ -11,6 +11,10 @@ router.get('/current', requireAuth, async (req, res, next) => {
   const { user } = req;
   const bookings = await Booking.findAll({
     attributes: ['id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt'],
+    where: {
+      userId: user.id,
+
+    },
     include: [
       {
         model: Spot,
@@ -22,11 +26,9 @@ router.get('/current', requireAuth, async (req, res, next) => {
           }
         ]
       }
-    ],
-    where: {
-      userId: user.id
-    }
+    ]
   });
+  console.log(bookings);
   let bookingList = [];
   bookings.forEach(booking => {
     bookingList.push(booking.toJSON());
@@ -43,7 +45,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
     }
     delete booking.Spot.SpotImages;
   })
-  res.json({ Booings: bookingList })
+  res.json({ Bookings: bookingList })
+
 
 })
 
@@ -121,41 +124,44 @@ router.put('/:id', requireAuth, async (req, res, next) => {
 
 ///delete bookings/:id
 //Delete a Booking
-//pending test await
 router.delete('/:id', requireAuth, async (req, res, next) => {
   const { user } = req;
-  const oneBooking = await Booking.findByPk(req.params.id);
-  if (!oneBooking) {
-    const err = new Error("Booking couldn't be found")
-    err.statusCode = 404
-    return next(err)
-  }
-  const oneBookingOwner = await Booking.findByPk(req.params.id, {
+  const oneBooking = await Booking.findOne({
+    where: {
+      id: req.params.id
+    },
     include: [
       {
         model: Spot,
         attributes: ['ownerId']
       }
     ]
-  })
-  let oneBookingOwnerPOJO = oneBookingOwner.toJSON();
-  if (oneBookingOwnerPOJO.Spot.ownerId !== user.id && oneBookingOwnerPOJO.userId !== user.id) {
+  });
+  let newoneBookingPOJO = oneBooking.toJSON();
+  console.log(newoneBookingPOJO)
+  if (!oneBooking) {
+    const err = new Error("Booking couldn't be found")
+    err.statusCode = 404
+    return next(err)
+  }
+
+  if (newoneBookingPOJO.Spot.ownerId !== user.id && newoneBookingPOJO.userId !== user.id) {
+    console.log(newoneBookingPOJO.Spot.ownerId, newoneBookingPOJO.userId)
     const err = new Error('Forbidden')
     err.statusCode = 403
     return next(err)
   }
   let currentDate = new Date();
-  let startDate = new Date(oneBookingOwnerPOJO.startDate);
-  let endDate = new Date(oneBookingOwnerPOJO.endDate);
+  let startDate = new Date(newoneBookingPOJO.startDate);
+  let endDate = new Date(newoneBookingPOJO.endDate);
   if (startDate < currentDate && endDate > currentDate) {
     res.statusCode = 403;
     return res.json({
       message: "Bookings that have been started can't be deleted."
-      //pending
     })
   }
 
-  await oneBookingOwner.destroy();
+  await oneBooking.destroy();
   res.json({ "message": "Successfully deleted" })
 
 
