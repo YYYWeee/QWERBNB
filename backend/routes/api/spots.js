@@ -613,15 +613,29 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
       }
     })
   }
-
+  //pending
   const newBooking = await Booking.create({
     spotId: req.params.id,
     userId: user.id,
     startDate: startDate,
     endDate: endDate
   })
+
+  let oneBooking = await Booking.findOne({
+    where: {
+      spotId: req.params.id,
+      userId: user.id,
+      startDate: startDate,
+      endDate: endDate
+    },
+    attributes: ['id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt']
+  })
   res.statusCode = 201;
-  res.json(newBooking)
+  res.json(oneBooking)
+
+
+  // res.statusCode = 201;
+  // res.json(newBooking)
 })
 
 
