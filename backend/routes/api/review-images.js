@@ -23,7 +23,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 
   if (!oneReviewImage) {
     res.statusCode = 404
-    res.json({ 'message': "Review image couldn't be found" })
+    return res.json({ 'message': "Review image couldn't be found" })
   }
   let oneReviewImagePOJO = oneReviewImage.toJSON();
   if (oneReviewImagePOJO.Review.userId != user.id) {

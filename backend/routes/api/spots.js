@@ -419,17 +419,17 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
   if (oneSpot.ownerId !== user.id) {
 
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
 
   await oneSpot.destroy();
-  res.json({ "message": "Successfully deleted" })
+  return res.json({ "message": "Successfully deleted" })
 })
 
 // Get all Reviews by a Spot's id
@@ -438,7 +438,7 @@ router.get('/:id/reviews', async (req, res) => {
   let oneSpot = await Spot.findByPk(req.params.id)
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
 
@@ -493,7 +493,7 @@ router.post('/:id/reviews', requireAuth, createReviewChecker, async (req, res, n
   let oneSpot = await Spot.findByPk(req.params.id);
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
   const targetReview = await Review.findAll({
@@ -532,7 +532,7 @@ router.get('/:id/bookings', requireAuth, async (req, res) => {
   let oneSpot = await Spot.findByPk(req.params.id)
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
   let bookings = await Booking.findAll({
