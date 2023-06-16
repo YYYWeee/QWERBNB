@@ -61,6 +61,11 @@ router.put('/:id', requireAuth, async (req, res, next) => {
       id: req.params.id
     }
   })
+
+  if (!oneBooking) {
+    res.statusCode = 404
+    return res.json({ 'message': "Booking couldn't be found" })
+  }
   const oneBookingPOJO = oneBooking.toJSON();
   // console.log(oneBookingPOJO);
   //Redundant work, already define in model file
@@ -79,10 +84,6 @@ router.put('/:id', requireAuth, async (req, res, next) => {
     return res.json({ 'message': "Past bookings can't be modified" })
   }
 
-  if (!oneBooking) {
-    res.statusCode = 404
-    return res.json({ 'message': "Booking couldn't be found" })
-  }
   if (oneBooking.userId != user.id) {
     res.statusCode = 403;
     return res.json({ 'message': "Forbidden" })
