@@ -78,8 +78,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
         })
       })
     }
-    res.json({ Bookings: bookingList })
   })
+  res.json({ Bookings: bookingList })
 })
 
 
