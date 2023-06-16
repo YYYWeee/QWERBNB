@@ -88,6 +88,30 @@ router.put('/:id', requireAuth, async (req, res, next) => {
     res.statusCode = 403;
     return res.json({ 'message': "Forbidden" })
   }
+//test conflictBooking
+  const conflictBooking = await Booking.findOne({
+    where: {
+      [Op.or]: [
+        { startDate: { [Op.between]: [startDate, endDate] } },
+        { endDate: { [Op.between]: [startDate, endDate] } }
+      ],
+      spotId: req.params.id
+    }
+  })
+  // console.log(conflictBooking)
+  if (conflictBooking) {
+    res.statusCode = 403;
+    return res.json({
+      message: "Sorry, this spot is already booked for the specified dates",
+      errors: {
+        startDate: "Start date conflicts with an existing booking",
+        endDate: "End date conflicts with an existing booking"
+      }
+    })
+  }
+
+
+
 
   let setObj = {}
   if (startDate) {
