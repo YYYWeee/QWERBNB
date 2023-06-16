@@ -20,9 +20,8 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   });
 
   if (!oneSpotImage) {
-    const err = new Error("Spot Image couldn't be found")
-    err.statusCode = 404
-    return next(err)
+    res.statusCode = 404
+    res.json({ 'message': "Spot Image couldn't be found" })
   }
   let oneSpotImagePOJO = oneSpotImage.toJSON();
   if (oneSpotImagePOJO.Spot.ownerId != user.id) {
