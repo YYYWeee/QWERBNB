@@ -65,9 +65,8 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   }
   //important!!!!!!
   if (oneReview.userId !== user.id) {
-    const err = new Error('Forbidden')
-    err.statusCode = 403
-    return next(err)
+    res.statusCode = 403;
+    res.json({ 'message': "Forbidden" })
   }
   await oneReview.destroy();
   res.json({ "message": "Successfully deleted" })
