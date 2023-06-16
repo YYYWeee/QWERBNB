@@ -67,7 +67,7 @@ router.put('/:id', requireAuth, async (req, res, next) => {
   //Body validation errors come from db level(model file)
   if (oneBookingPOJO.endDate < oneBookingPOJO.startDate) {
     res.statusCode = 400;
-    res.json("endDate cannot come before startDate")
+    return res.json("endDate cannot come before startDate")
   }
 
   let currentDate = new Date();
@@ -76,16 +76,16 @@ router.put('/:id', requireAuth, async (req, res, next) => {
 
   if (newStartDate < currentDate) {
     res.statusCode = 403;
-    res.json({ 'message': "Past bookings can't be modified" })
+    return res.json({ 'message': "Past bookings can't be modified" })
   }
 
   if (!oneBooking) {
     res.statusCode = 404
-    res.json({ 'message': "Booking couldn't be found" })
+    return res.json({ 'message': "Booking couldn't be found" })
   }
   if (oneBooking.userId != user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
 
   let setObj = {}
@@ -118,7 +118,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   });
   if (!oneBooking) {
     res.statusCode = 404
-    res.json({ 'message': "Booking couldn't be found" })
+    return res.json({ 'message': "Booking couldn't be found" })
   }
   let newoneBookingPOJO = oneBooking.toJSON();
   console.log(newoneBookingPOJO)
@@ -127,7 +127,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     console.log(newoneBookingPOJO.Spot.ownerId, newoneBookingPOJO.userId)
 
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
   let currentDate = new Date();
   let startDate = new Date(newoneBookingPOJO.startDate);
