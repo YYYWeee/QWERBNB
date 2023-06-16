@@ -89,8 +89,13 @@ router.get('/', queryValidator, async (req, res, next) => {
     for (let j = 0; j < reviews.length; j++) {
       totalStar += reviews[j].dataValues.stars
     }
-    let avgStar = totalStar / reviews.length;
-    allSpots[i].dataValues.avgRating = avgStar;
+    if (totalStar == 0) {
+      allSpots[i].dataValues.avgRating = null;
+    } else {
+      let avgStar = totalStar / reviews.length;
+      avgStar = (Math.round(avgStar * 100) / 100).toFixed(2);
+      allSpots[i].dataValues.avgRating = avgStar;
+    }
   }
 
 
@@ -508,9 +513,9 @@ router.post('/:id/reviews', requireAuth, createReviewChecker, async (req, res, n
   })
 
   if (reviewList.length >= 1) {
-    const err = new Error('User already has a review for this spot');
-    err.statusCode = 403
-    return next(err)
+
+    res.statusCode = 403;
+    return res.json({ 'message': "User already has a review for this spot" })
 
   }
 
