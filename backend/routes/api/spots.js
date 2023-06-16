@@ -618,7 +618,7 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
       }
     })
   }
-  //pending
+
   const newBooking = await Booking.create({
     spotId: req.params.id,
     userId: user.id,
@@ -637,10 +637,6 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
   })
   res.statusCode = 201;
   res.json(oneBooking)
-
-
-  // res.statusCode = 201;
-  // res.json(newBooking)
 })
 
 
