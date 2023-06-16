@@ -26,7 +26,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   let oneSpotImagePOJO = oneSpotImage.toJSON();
   if (oneSpotImagePOJO.Spot.ownerId != user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
   await oneSpotImage.destroy();
   res.json({ "message": "Successfully deleted" })
