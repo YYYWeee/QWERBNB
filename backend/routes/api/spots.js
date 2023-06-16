@@ -598,7 +598,8 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
       [Op.or]: [
         { startDate: { [Op.between]: [startDate, endDate] } },
         { endDate: { [Op.between]: [startDate, endDate] } }
-      ]
+      ],
+      spotId: req.params.id
     }
   })
   if (conflictBooking) {
