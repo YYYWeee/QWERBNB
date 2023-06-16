@@ -65,7 +65,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
   // console.log(imagesList)
 
   bookingList.forEach(booking => {
-    if (!imagesList) {
+    if (imagesList.length <1) {
       booking.Spot.previewImage = null;
     } else if (imagesList) {
       imagesList.forEach(image => {
