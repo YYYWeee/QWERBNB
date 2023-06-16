@@ -96,7 +96,7 @@ router.put('/:id', requireAuth, async (req, res, next) => {
         { startDate: { [Op.between]: [startDate, endDate] } },
         { endDate: { [Op.between]: [startDate, endDate] } }
       ],
-      spotId: req.params.id
+      spotId: oneBooking.spotId
     }
   })
   // console.log(conflictBooking)
