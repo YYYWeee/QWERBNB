@@ -151,8 +151,8 @@ router.put('/:id', requireAuth, validateEditReview, async (req, res, next) => {
 
   if (oneReview.userId !== user.id) {
     const err = new Error('Forbidden')
-    err.statusCode = 403
-    return next(err)
+    res.statusCode = 403;
+    res.json({ 'message': "Forbidden" })
   }
 
 
