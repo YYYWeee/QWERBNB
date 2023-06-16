@@ -72,6 +72,8 @@ router.get('/current', requireAuth, async (req, res, next) => {
         imagesList.forEach(image => {
           if (image.preview == true) {
             booking.Spot.previewImage = image.url;
+          }else{
+            booking.Spot.previewImage = null;
           }
         })
       })
