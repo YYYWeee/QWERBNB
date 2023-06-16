@@ -13,7 +13,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
     attributes: ['id', 'spotId', 'userId', 'startDate', 'endDate', 'createdAt', 'updatedAt'],
     where: {
       userId: user.id,
-
     },
     include: [
       {
@@ -28,7 +27,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
       }
     ]
   });
-  console.log(bookings);
+  // console.log(bookings);
   let bookingList = [];
   bookings.forEach(booking => {
     bookingList.push(booking.toJSON());
@@ -37,7 +36,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
     booking.Spot.SpotImages.forEach(image => {
       if (image.preview === true) {
         booking.Spot.previewImage = image.url;
-
       }
     })
     if (!booking.Spot.previewImage) {
@@ -46,25 +44,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
     delete booking.Spot.SpotImages;
   })
   res.json({ Bookings: bookingList })
-
-
 })
-
-// const validateEditBooking = [
-//   check('startDate')
-//     .exists()
-//     .notEmpty()
-//     .isDate()
-//     .isBefore('endDate')
-//     .withMessage('StartDate cannot come after endDate'),
-//   check('endDate')
-//     .exists()
-//     .notEmpty()
-//     .isDate()
-//     .isAfter('startDate')
-//     .withMessage('endDate cannot come before startDate'),
-//   handleValidationErrors
-// ];
 
 
 
@@ -86,7 +66,7 @@ router.put('/:id', requireAuth, async (req, res, next) => {
   //Body validation errors come from db level(model file)
   if (oneBookingPOJO.endDate < oneBookingPOJO.startDate) {
     res.statusCode = 400;
-    res.json( "endDate cannot come before startDate")
+    res.json("endDate cannot come before startDate")
   }
 
   let currentDate = new Date();
