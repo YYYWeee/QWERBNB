@@ -602,6 +602,7 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
       spotId: req.params.id
     }
   })
+  // console.log(conflictBooking)
   if (conflictBooking) {
     res.statusCode = 403;
     return res.json({
