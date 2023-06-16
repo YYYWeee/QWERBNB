@@ -204,7 +204,7 @@ router.get('/:id', async (req, res) => {
   })
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
 
@@ -301,11 +301,11 @@ router.post('/:id/images', requireAuth, async (req, res) => {
   let oneSpot = await Spot.findByPk(id)
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
   if (oneSpot.ownerId !== user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
 
   let newImage = await SpotImage.create({
@@ -375,12 +375,12 @@ router.put('/:id', requireAuth, validateEditSpot, async (req, res) => {
   let oneSpot = await Spot.findByPk(req.params.id)
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
   if (oneSpot.ownerId !== user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
   let setObj = {}
   if (address) {
@@ -589,13 +589,13 @@ router.post('/:id/bookings', requireAuth, async (req, res) => {
 
   if (!oneSpot) {
     res.statusCode = 404
-    res.json({ 'message': "Spot couldn't be found" })
+    return res.json({ 'message': "Spot couldn't be found" })
   }
 
   const oneSpotPOJO = oneSpot.toJSON();
   if (oneSpotPOJO.ownerId == user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
 
   const conflictBooking = await Booking.findOne({
