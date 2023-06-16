@@ -28,7 +28,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   let oneReviewImagePOJO = oneReviewImage.toJSON();
   if (oneReviewImagePOJO.Review.userId != user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
 
 

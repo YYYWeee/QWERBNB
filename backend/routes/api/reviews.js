@@ -61,12 +61,12 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
   const oneReview = await Review.findByPk(req.params.id);
   if (!oneReview) {
     res.statusCode = 404
-    res.json({ 'message': "Review couldn't be found" })
+    return res.json({ 'message': "Review couldn't be found" })
   }
   //important!!!!!!
   if (oneReview.userId !== user.id) {
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
   }
   await oneReview.destroy();
   res.json({ "message": "Successfully deleted" })
@@ -89,7 +89,7 @@ router.post('/:id/images', requireAuth, async (req, res, next) => {
 
   if (!oneReview) {
     res.statusCode = 404
-    res.json({ "message": "Review couldn't be found" })
+    return res.json({ "message": "Review couldn't be found" })
   }
   // if (oneReview.userId !== user.id) {
   //   const err = new Error('Forbidden')
@@ -99,9 +99,8 @@ router.post('/:id/images', requireAuth, async (req, res, next) => {
 
   const reviewPOJO = oneReview.toJSON();
   if (reviewPOJO.userId !== user.id) {
-    const err = new Error('Forbidden')
-    err.statusCode = 403
-    return next(err)
+    res.statusCode = 403;
+    return res.json({ 'message': "Forbidden" })
   }
   let count = 0;
   reviewPOJO.ReviewImages.forEach(image => {
@@ -145,13 +144,13 @@ router.put('/:id', requireAuth, validateEditReview, async (req, res, next) => {
   let oneReview = await Review.findByPk(req.params.id);
   if (!oneReview) {
     res.statusCode = 404
-    res.json({ 'message': "Review couldn't be found" })
+    return res.json({ 'message': "Review couldn't be found" })
   }
 
   if (oneReview.userId !== user.id) {
-    const err = new Error('Forbidden')
     res.statusCode = 403;
-    res.json({ 'message': "Forbidden" })
+    return res.json({ 'message': "Forbidden" })
+
   }
 
 
