@@ -62,7 +62,6 @@ router.get('/current', requireAuth, async (req, res, next) => {
   spotImages.forEach(image => {
     imagesList.push(image.toJSON());
   });
-  // console.log(imagesList)
 
   bookingList.forEach(booking => {
     if (imagesList.length < 1) {
