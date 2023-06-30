@@ -29,7 +29,7 @@ router.get('/current', requireAuth, async (req, res, next) => {
       }
     ]
   });
-  // console.log(bookings);
+
   let bookingList = [];
   let spotImageList = []   //del
   bookings.forEach(booking => {
@@ -98,7 +98,7 @@ router.put('/:id', requireAuth, async (req, res, next) => {
     return res.json({ 'message': "Booking couldn't be found" })
   }
   const oneBookingPOJO = oneBooking.toJSON();
-  // console.log(oneBookingPOJO);
+
   //Redundant work, already define in model file
   //Body validation errors come from db level(model file)
   if (oneBookingPOJO.endDate < oneBookingPOJO.startDate) {
@@ -129,7 +129,7 @@ router.put('/:id', requireAuth, async (req, res, next) => {
       spotId: oneBooking.spotId
     }
   })
-  // console.log(conflictBooking)
+
   if (conflictBooking) {
     res.statusCode = 403;
     return res.json({
@@ -177,10 +177,10 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
     return res.json({ 'message': "Booking couldn't be found" })
   }
   let newoneBookingPOJO = oneBooking.toJSON();
-  console.log(newoneBookingPOJO)
+
 
   if (newoneBookingPOJO.Spot.ownerId !== user.id && newoneBookingPOJO.userId !== user.id) {
-    console.log(newoneBookingPOJO.Spot.ownerId, newoneBookingPOJO.userId)
+
 
     res.statusCode = 403;
     return res.json({ 'message': "Forbidden" })
