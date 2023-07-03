@@ -22,6 +22,7 @@ function Navigation({ isLoaded }) {
           {isLoaded && <ProfileButton user={sessionUser} id='QWERBNB' />}
         </div>
       </div>
+
     </ul>
   );
 }
