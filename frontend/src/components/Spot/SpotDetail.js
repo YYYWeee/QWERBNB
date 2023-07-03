@@ -12,6 +12,7 @@ function SpotDetail() {
   const spot = useSelector((state) => state.spots.spot);
   // const user = useSelector((state) => state.session.user);
 
+
   useEffect(() => {
     dispatch(getSpotDetailThunk(id));
   }, [dispatch, id]);
