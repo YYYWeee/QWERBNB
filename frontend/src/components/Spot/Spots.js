@@ -1,15 +1,16 @@
 //get all spots
 
 import { useEffect } from "react";
-// import Tile from "./Tile";
+
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSpotsThunk } from "../../store/spots"
 import './Spots.css'
+// import { useHistory } from "react-router-dom";
 
 function Spots() {
+  // const history = useHistory();
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.allSpots);
-
 
   useEffect(() => {
     dispatch(getAllSpotsThunk());
@@ -17,38 +18,36 @@ function Spots() {
 
   if (!spots) return null;
 
+  // const handleClick = (id) => {
+  //   history.push(`/spots/${id}`);
+  // };
+
   return (
     <>
       <div id="spots-container">
         {spots.map((spot) => {
           return (
             <>
-              <div className="single-spot-container">
+              <div className="single-spot-container" key={spot.id}>
                 <img
                   className="preview-image"
                   src={spot.previewImage}
                   alt={spot.previewImage}
+                  // onClick={handleClick(spot.id)}
                 />
-                <h4>{spot.id}</h4>
-                <p>{spot.city}{spot.state}</p>
-                <p>{spot.avgRating}</p>
-                <p>{spot.previewImage}</p>
-                <p>{spot.name}</p>
-                <p>{spot.price}</p>
+                <div className="location_rating">
+                  <p className="location">{spot.city}, {spot.state}</p>
+
+                  {spot.avgRating?(<p className="rating"> <i class="fa-solid fa-star"></i>{spot.avgRating}</p>):(<p>New</p>)}
+                </div>
+                {/* <p>{spot.previewImage}</p> */}
+                {/* <p>{spot.name}</p> */}
+                <div className="price">
+                  <p>${spot.price} night</p>
+                </div>
 
               </div>
             </>
-
-            // <Tile
-            //   key={id}
-            //   id={id}
-            //   price={price}
-            //   location={`${city}, ${state}`}
-            //   rating={avgRating}
-            //   images={previewImage}
-            //   name={name}
-            // />
-
           );
         }
         )}

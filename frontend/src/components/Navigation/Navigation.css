@@ -1,7 +1,11 @@
+
 .hidden {
   display: none
 }
-
+.active{
+  /* width: fit-content; */
+  width: 300px;
+}
 #QWERBNB {
   display: flex;
   align-items: center;
@@ -31,32 +35,38 @@ div {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+  border-bottom: 1px solid #BEBEBE;
 }
 
 
 .dropdown-menu {
   position: absolute;
-  /* top: 130%; */
+  display: flex;
+  flex-direction: column;
   right: 0;
-  border-radius: 10px;
-  -webkit-box-shadow: 0px 0px 16px 1px rgba(0, 0, 0, 0.77);
+  border-radius: 12px;
   box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.1);
   width: 50px;
   margin-right: 40px;
-  display: flex;
-  flex-direction: column;
   background-color: white;
   padding: 10px 0px 10px 0px;
+  width: 100px;
+  list-style-type: none;
+
+
 
 }
 
+.dropdown-menu :hover {
+  cursor: pointer;
+}
 
 #logout-button:hover {
   cursor: pointer;
 }
 
 
-.button-font-awesome{
+.button-font-awesome {
   display: flex;
   flex-direction: row;
   justify-content: space-around;
@@ -66,7 +76,19 @@ div {
 
 }
 
-.fa-user-circle{
+.fa-user-circle {
   margin-top: 8px;
+}
 
+.profile-dropdown>* {
+  padding-left: 8px;
+  /* margin-top: 10px; */
+
+}
+
+.profile-dropdown {
+  width: 250%;
+  height: 100px;
+  /* margin-top: 10px; */
+  /* width: 100%; */
 }
