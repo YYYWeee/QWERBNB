@@ -11,14 +11,14 @@ function Navigation({ isLoaded }) {
 
   return (
     <ul>
-      <div class="nav-container">
-        <div class="logo-container">
+      <div className="nav-container">
+        <div className="logo-container">
           <img src={logo} alt="logo" width="30" height="30" />
           <NavLink exact to="/" id='QWERBNB'>
             <h2>QWERBNB</h2>
           </NavLink>
         </div>
-        <div class="menu">
+        <div className="menu">
           {isLoaded && <ProfileButton user={sessionUser} id='QWERBNB' />}
         </div>
       </div>

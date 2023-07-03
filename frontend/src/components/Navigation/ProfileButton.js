@@ -48,7 +48,7 @@ function ProfileButton({ user }) {
     <>
       <div className="dropdown-menu">
         <button onClick={openMenu} className="button-font-awesome">
-          <div class="three-bars"><i class="fa-solid fa-bars fa-xl"></i></div>
+          <div className="three-bars"><i className="fa-solid fa-bars fa-xl"></i></div>
           <i className="fas fa-user-circle fa-xl" />
         </button>
 
