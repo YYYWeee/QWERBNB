@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostReviewModal from '../PostReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
-function ReviewButton({ spotId }) {
+function ReviewButton({ id }) {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
   const dispatch = useDispatch();
@@ -50,6 +50,9 @@ function ReviewButton({ spotId }) {
   } else {
     action = 'Be the first to post a review!'
   }
+
+
+
   return (
     <>
       {/* <h1>{action}</h1> */}
@@ -58,7 +61,7 @@ function ReviewButton({ spotId }) {
                   <OpenModalMenuItem
                     itemText="How was your stay?"
                     onItemClick={closeMenu}
-                    modalComponent={<PostReviewModal id={spotId} />}
+                    modalComponent={<PostReviewModal id={id} />}
                   />
                 </p>
 

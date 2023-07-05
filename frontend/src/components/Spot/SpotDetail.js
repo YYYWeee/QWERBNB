@@ -8,7 +8,7 @@ import ReviewButton from '../Reviews/ReviewButton'
 
 function SpotDetail() {
   const { id } = useParams();
-  const ID = parseInt(id)
+  // const ID = parseInt(id)
   const dispatch = useDispatch();
   const spot = useSelector((state) => state.spots.spot);
   const user = useSelector((state) => state.session.user);
@@ -74,7 +74,7 @@ function SpotDetail() {
           <h4>{spot.description}</h4>
         </div>
         <div className="review-container">
-        {spot.Owner.id !== user.id && <ReviewButton id={ID} />}   {/* ID is spot id from url */}
+        {spot.Owner.id !== user.id && <ReviewButton id={id} />}   {/* ID is spot id from url */}
           <Review />
 
         </div>

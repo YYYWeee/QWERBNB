@@ -22,9 +22,9 @@ export const getReviewsThunk = (id) => async (dispatch) => {
 };
 
 
-export const createAReviewThunk = (spotId, review, user) => async (dispatch) => {
+export const createAReviewThunk = (id, spotId,review, user) => async (dispatch) => {
   const response = await (
-    await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    await csrfFetch(`/api/spots/${id}/reviews`, {
       method: "POST",
       body: JSON.stringify(review),
     })
