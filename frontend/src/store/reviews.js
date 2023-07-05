@@ -22,17 +22,21 @@ export const getReviewsThunk = (id) => async (dispatch) => {
 };
 
 
-export const createAReviewThunk = (id, spotId,review, user) => async (dispatch) => {
-  const response = await (
-    await csrfFetch(`/api/spots/${id}/reviews`, {
-      method: "POST",
-      body: JSON.stringify(review),
-    })
-  ).json();
+// export const createAReviewThunk = (userId,spotId,review) => async (dispatch) => {
+export const createAReviewThunk = (userId, spotId, review, star) => async (dispatch) => {
+  console.log('in the thunk', userId, spotId, review, star)
+  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+    method: "POST",
+    headers: {
+      "Content-Type": "application/json"
+    },
+    body: JSON.stringify({ review: review, stars: star }),
+  })
 
-  if (response) {
-    response.User = user;
-    dispatch(createReview(response));
+  if (response.ok) {
+    const newReview = await response.json();
+    dispatch(createReview(newReview));
+    return newReview;
   }
 };
 

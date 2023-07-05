@@ -31,6 +31,7 @@ const StarRating = ({ stars, setStars }) => {
           return (
             <label>
               <input type='radio'
+                key={star}
                 name='rating'
                 value={currentValue}
                 onClick={() => {
@@ -47,7 +48,7 @@ const StarRating = ({ stars, setStars }) => {
             </label>
           );
         })}
-        <p>rating is {rating}</p>
+        {/* <p>rating is {rating}</p> */}
       </div>
     </>
   );

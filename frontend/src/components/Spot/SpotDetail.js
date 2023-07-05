@@ -5,6 +5,7 @@ import { getSpotDetailThunk } from "../../store/spots";
 import Review from '../Reviews/Review'
 import './SpotDetail.css'
 import ReviewButton from '../Reviews/ReviewButton'
+// import ReserveBox from '../Reviews/ReserveButton'
 
 function SpotDetail() {
   const { id } = useParams();
