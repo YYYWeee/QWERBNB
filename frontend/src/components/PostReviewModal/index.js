@@ -3,37 +3,52 @@ import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import StarRating from "./StarRating";
 import createAReviewThunk from '../../store/reviews'
+import { useHistory } from "react-router-dom";
 
-function PostReviewModal({ id, spotId }) {
+
+function PostReviewModal(spotId) {
   const dispatch = useDispatch();
+  const history = useHistory();
   const user = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
   // const { closeModal } = useModalContext();
-
+  const spotIdF = spotId['id']
+  const userId = user.id;
   useEffect(() => {
     console.log('review', review)
     console.log('stars', stars)
+    console.log('spotId', spotId['id'])
+    console.log('userId',userId)
   }, [review, stars]);
 
 
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     // const payload = {
-    //   spotId,
-    //   user,
+    //   spotIdF,
+    //   userId,
     //   review,
     //   stars
     // }
 
 
 
+    let createdReview;
 
-    dispatch(createAReviewThunk(id, spotId ?? id, { review, stars }, user));
-    // closeModal();
+    try {
+      createdReview = await dispatch(createAReviewThunk(userId, spotIdF, review, stars))
+      // createdReview = await dispatch(createAReviewThunk(userId, spotIdF, {review, stars}))
+      console.log(spotIdF, userId, review, stars)
+      // createdReview = await dispatch(createAReviewThunk(payload))
+      history.push(`/spots/${spotIdF}`);
+    } catch (error) {
+      console.log(error);
+    }
+
+
   };
-
 
 
   return (
@@ -51,7 +66,7 @@ function PostReviewModal({ id, spotId }) {
         <button
           className="submit-button"
           onClick={handleSubmit}
-        disabled={review.length < 10 || stars === 0}
+          disabled={review.length < 10 || stars === 0}
         >
           <p>Submit your review</p>
         </button>
@@ -70,3 +85,10 @@ export default PostReviewModal;
 //   "review": "This was an awesome spot!",
 //   "stars": 5,
 // }
+
+// const newReview = await Review.create({
+//   spotId: req.params.id,
+//   userId: user.id,
+//   review: review,
+//   stars: stars
+// })

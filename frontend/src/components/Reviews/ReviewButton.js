@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostReviewModal from '../PostReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
-function ReviewButton({ id }) {
+function ReviewButton({id}) {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
   const dispatch = useDispatch();
