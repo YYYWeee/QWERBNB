@@ -1,18 +1,18 @@
 import { getCurrentUserSpotsThunk } from "../../store/spots";
 import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
-import { NavLink } from "react-router-dom";
+// import { NavLink } from "react-router-dom";
 import './CurrentUserSpots.css'
 
 function CurrentUserSpots() {
   const dispatch = useDispatch();
+  let spots = useSelector((state) => state.spots.allSpots);
 
   useEffect(() => {
     console.log('hello')
     dispatch(getCurrentUserSpotsThunk());
   }, [dispatch]);
 
-  let spots = useSelector((state) => state.spots.allSpots);
 
   if (!spots) return null;
 
@@ -43,7 +43,7 @@ function CurrentUserSpots() {
                     <div className="location_rating">
                       <p className="location">{spot.city}, {spot.state}</p>
 
-                      {spot.avgRating ? (<p className="rating"> <i class="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p>New</p>)}
+                      {spot.avgRating ? (<p className="rating"> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p>New</p>)}
                     </div>
                     <div className="price">
                       <p>${spot.price} night</p>
