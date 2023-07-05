@@ -156,8 +156,11 @@ router.get('/current', requireAuth, async (req, res) => {
     for (let j = 0; j < reviews.length; j++) {
       totalStar += reviews[j].dataValues.stars
     }
+
     let avgStar = totalStar / reviews.length;
+     avgStar = (Math.round(avgStar * 100) / 100).toFixed(2);
     allSpots[i].dataValues.avgRating = avgStar;
+
   }
 
 
@@ -215,6 +218,7 @@ router.get('/:id', async (req, res) => {
   }
   let reviewLength = reviews.length
   let avgStar = totalStar / reviews.length;
+  avgStar = (Math.round(avgStar * 100) / 100).toFixed(2);
   oneSpot = oneSpot.toJSON();
   oneSpot.avgStarRating = avgStar;
   oneSpot.numReviews = reviewLength;
