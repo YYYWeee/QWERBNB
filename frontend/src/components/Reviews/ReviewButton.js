@@ -9,6 +9,7 @@ function ReviewButton({ id }) {
   const dispatch = useDispatch();
   const [showMenu, setShowMenu] = useState(false);
   const ulRef = useRef();
+  console.log('userId', user.id)
 
 
   const openMenu = () => {
@@ -40,9 +41,14 @@ function ReviewButton({ id }) {
   //   return null;
   // }
 
-  if(!reviews[0]==null){
-    const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
-    if (reviewByCurrentUser) return null
+  if (reviews[0] !== null) {
+    console.log('here')
+    // const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
+    const reviewByCurrentUser = reviews.find((review) => review.userId === user.id)
+    if (reviewByCurrentUser) {
+      console.log("I have review already")
+      return null
+    }
   }
 
 
@@ -53,7 +59,7 @@ function ReviewButton({ id }) {
 
 
   let action;
-  if (reviews[0] ==null) {
+  if (reviews[0] == null) {
     action = 'Be the first to post a review!'
   } else {
     action = 'Post a review'
@@ -64,7 +70,7 @@ function ReviewButton({ id }) {
   return (
     <>
       {/* {!reviews ? */}
-      {reviews[0]==null ?
+      {reviews[0] == null ?
         (<div className="post-review-button">
           <p>
             <OpenModalMenuItem
@@ -77,16 +83,16 @@ function ReviewButton({ id }) {
 
         </div>) :
         (<div className="post-review-button">
-        <p>
-          <OpenModalMenuItem
-            itemText="Post your review"
-            onItemClick={closeMenu}
-            modalComponent={<PostReviewModal id={id} />}
-          />
-        </p>
-        <p>{action}</p>
+          <p>
+            <OpenModalMenuItem
+              itemText="Post your review"
+              onItemClick={closeMenu}
+              modalComponent={<PostReviewModal id={id} />}
+            />
+          </p>
+          <p>{action}</p>
 
-      </div>)
+        </div>)
       }
     </>
   )

@@ -351,16 +351,6 @@ const validateEditSpot = [
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('Price per day is required'),
-  check('lat')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .isFloat({ min: -90, max: 90 })
-    .withMessage('Latitude is not valid'),
-  check('lng')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .isFloat({ min: -180, max: 180 })
-    .withMessage('Longitude is not valid'),
   handleValidationErrors
 ];
 
@@ -440,6 +430,7 @@ router.delete('/:id', requireAuth, async (req, res, next) => {
 // Get all Reviews by a Spot's id
 //spots/:id/reviews
 router.get('/:id/reviews', async (req, res) => {
+  console.log('????????????????req???????????????????',req.params.id)
   let oneSpot = await Spot.findByPk(req.params.id)
   if (!oneSpot) {
     res.statusCode = 404
@@ -493,9 +484,10 @@ const createReviewChecker = (req, res, next) => {
 //create a Review for a Spot based on the Spot's id
 //post /spots/:id/reviews
 router.post('/:id/reviews', requireAuth, createReviewChecker, async (req, res, next) => {
+  console.log('=============req=============',req.body);
   const { review, stars } = req.body;
   const { user } = req;
-  const spotId = req.params.spotId;
+  const spotId = req.params.id;
   const userId = req.user.id;
   let oneSpot = await Spot.findByPk(req.params.id);
   if (!oneSpot) {

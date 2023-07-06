@@ -9,26 +9,34 @@ const getReviews = (reviews) => ({
   payload: reviews
 });
 
-const createReview = (review) =>
-{
-  console.log('review',review)
+const createReview = (review) => {
+  console.log('review', review)
   return {
-  type: CREATE_REVIEW,
-  payload: review
-}};
+    type: CREATE_REVIEW,
+    payload: review
+  }
+};
 
 // Thunk
 //Get all Reviews by Spot Id
 export const getReviewsThunk = (id) => async (dispatch) => {
+  console.log('~~~~~~~~~~~id~~~~~~~~',id)
   const data = await (await csrfFetch(`/api/spots/${id}/reviews`)).json();
   if (data.Reviews) dispatch(getReviews(data.Reviews));
 };
 
 
 // export const createAReviewThunk = (userId,spotId,review) => async (dispatch) => {
-export const createAReviewThunk = (userId, spotId, review, star) => async (dispatch) => {
-  console.log('in the thunk', userId, spotId, review, star)
-  const response = await csrfFetch(`/api/spots/${spotId}/reviews`, {
+export const createAReviewThunk = (user, spotId, review, star) => async (dispatch) => {
+  console.log('in the thunk',{ user, spotId, review, star})
+  // console.log('spotId', spotId['id'])
+  // let id = parseInt(spotId['id'])
+  // // console.log(typeof(id))  //number
+  // console.log('spotId.id', spotId.id)
+  // const response = await csrfFetch(`/api/spots/${id}/reviews`, {
+  const response = await csrfFetch(`/api/spots/${spotId.id}/reviews`, {
+
+
     method: "POST",
     headers: {
       "Content-Type": "application/json"
@@ -39,10 +47,13 @@ export const createAReviewThunk = (userId, spotId, review, star) => async (dispa
   if (response.ok) {
     const newReview = await response.json();
     console.log('newReview', newReview)
+
+    //add user key
+    newReview.User = user;
     dispatch(createReview(newReview));
     return newReview;
   }
-  console.log('didnt enter')
+
 };
 
 
@@ -59,7 +70,7 @@ const reviewReducer = (state = initialState, action) => {
       };
 
     case CREATE_REVIEW:
-      console.log('action',action)
+      console.log('action', action)
       return {
         review: state.review,
         reviews: [...state.reviews, action.payload]

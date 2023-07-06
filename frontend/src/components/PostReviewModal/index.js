@@ -5,6 +5,7 @@ import StarRating from "./StarRating";
 import {createAReviewThunk} from '../../store/reviews'
 import { useHistory } from "react-router-dom";
 
+import { useModal } from "../../context/Modal";
 
 function PostReviewModal(spotId) {
   const dispatch = useDispatch();
@@ -12,43 +13,30 @@ function PostReviewModal(spotId) {
   const user = useSelector((state) => state.session.user);
   const [review, setReview] = useState("");
   const [stars, setStars] = useState(0);
-  // const { closeModal } = useModalContext();
-  const spotIdF = spotId['id']
+  const { closeModal } = useModal();
+
+
   const userId = user.id;
   useEffect(() => {
-    console.log('review', review)
-    console.log('stars', stars)
-    console.log('spotId', spotId['id'])
-    console.log('userId',userId)
+    console.log('PostReviewModal review', review)
+    console.log('PostReviewModal stars', stars)
+    console.log('PostReviewModal spotId', spotId["id"])
+    console.log('PostReviewModal userId',userId)
   }, [review, stars]);
 
 
 
   const handleSubmit = async (e) => {
 
-    e.preventDefault();
-    // const payload = {
-    //   spotIdF,
-    //   userId,
-    //   review,
-    //   stars
-    // }
-
-
-
     let createdReview;
-
     try {
-    console.log('in the try ',userId, spotIdF, review, stars)
-      createdReview = await dispatch(createAReviewThunk(userId, spotIdF, review, stars))
-      // createdReview = await dispatch(createAReviewThunk(userId, spotIdF, {review, stars}))
-      console.log(spotIdF, userId, review, stars)
-      // createdReview = await dispatch(createAReviewThunk(payload))
-      history.push(`/spots/${spotIdF}`);
+    console.log('in the try ',user, spotId, review, stars)
+      createdReview = await dispatch(createAReviewThunk(user, spotId, review, stars)) .then(closeModal)
+
+      history.push(`/spots/${spotId.id}`);
     } catch (error) {
       console.log(error);
     }
-
 
   };
 

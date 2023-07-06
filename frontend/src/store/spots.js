@@ -2,7 +2,8 @@ import { csrfFetch } from "./csrf";
 
 const GET_ALL_SPOTS = "spot/getAllSpots";
 const GET_SINGLE_SPOT = "spot/getSingleSpotDetail"
-
+const UPDATE_SPOT = "spot/update"
+const DELETE_SPOT = "spot/deleteSpot";
 
 //action creator
 const getSpots = (spots) => ({
@@ -15,6 +16,15 @@ const getSpot = (spot) => ({
   payload: spot
 });
 
+const deleteSpot = (id) => ({ type: DELETE_SPOT, payload: id });
+
+
+// const updateSpotAction = (spot) => {
+//   return {
+//     type: UPDATE_SPOT,
+//     payload: spot
+//   }
+// }
 
 
 // Thunk
@@ -65,7 +75,7 @@ export const addSpotImage = (spot, image) => async (dispatch) => {
         spot.SpotImages.push(newImage);
         console.log('newImage', newImage)
       }
-      console.log('spot.SpotImages', spot.SpotImages) //issue
+      console.log('spot.SpotImages', spot.SpotImages)
     }
   }
   dispatch(getSpot(spot));
@@ -78,12 +88,75 @@ export const getSpotDetailThunk = (id) => async (dispatch) => {
   const data = await res.json();
   if (data) {
     dispatch(getSpot(data))
-  };
 
+  };
 }
 
 
+
+//now
+// export const updateSpot =
+//   (newSpotData,id) => async (dispatch) => {
+//     console.log('in thunk', newSpotData)  //reach here ok
+//     const response = await csrfFetch(`/api/spots/${id}`, {
+//       headers: { "Content-Type": "application/json" },
+//       method: "PUT",
+//       body: JSON.stringify({
+//         country: newSpotData.country,
+//         address: newSpotData.address,
+//         city: newSpotData.city,
+//         state: newSpotData.state,
+//         description: newSpotData.description,
+//         name: newSpotData.name,
+//         price: newSpotData.price
+//       }),
+//     })
+//     console.log('response', response)
+//     let updatedSpot = await response.json();
+//     console.log('updatedSpot', updatedSpot)
+//     dispatch(getSpot(updatedSpot));
+//     return updatedSpot;
+
+//   }
+
+export const updateSpot =
+  (newSpotData, id) => async (dispatch) => {
+    console.log('in thunk', newSpotData)  //reach here ok
+    try {
+      const response = await csrfFetch(`/api/spots/${id}`, {
+        headers: { "Content-Type": "application/json" },
+        method: "PUT",
+        body: JSON.stringify({
+          country: newSpotData.country,
+          address: newSpotData.address,
+          city: newSpotData.city,
+          state: newSpotData.state,
+          description: newSpotData.description,
+          name: newSpotData.name,
+          price: newSpotData.price
+        }),
+      })
+      let updatedSpot = await response.json();
+      console.log('updatedSpot', updatedSpot)
+      dispatch(getSpot(updatedSpot));
+      return updatedSpot;
+
+    } catch (error) {
+      console.log('error', error)
+    }
+  }
+
+
+export const deleteSpotThunk = (id) => async (dispatch) => {
+  const res = await csrfFetch(`/api/spots/${id}`, { method: "DELETE" });
+  if (res.ok) {
+    return dispatch(deleteSpot(id));
+  }
+};
+
+
 //Reducer
+//allSpots []  , spot{} single spot detail
 const initialState = { allSpots: [], spot: {} };
 
 const spotReducer = (state = initialState, action) => {
@@ -99,6 +172,21 @@ const spotReducer = (state = initialState, action) => {
         allSpots: state.allSpots,
         spot: action.payload
       }
+
+    case UPDATE_SPOT:
+      return {
+        allSpots: state.allSpots,
+        spot: action.payload
+      }
+
+    case DELETE_SPOT:
+      return {
+        allSpots: state.allSpots.filter(
+          (spot) => spot.id !== action.payload
+        ),
+        spot: state.spot,
+      };
+
 
     default:
       return state;

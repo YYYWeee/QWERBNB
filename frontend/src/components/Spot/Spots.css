@@ -26,3 +26,7 @@
 .price{
  font-weight: bold;
 }
+
+.preview-image{
+  cursor: pointer;
+}
