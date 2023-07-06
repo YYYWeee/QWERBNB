@@ -38,11 +38,14 @@ function Review() {
     dispatch(getReviewsThunk(id));
   }, [dispatch, id]);
 
-  // if (!reviews) {
-  //   return null;
-  // }
+  if (!reviews) {
+    return null;
+  }
   // if (!reviews[0]) {
   //   console.log('no reviews')
+  //   return null;
+  // // }
+  // if (!reviews[0].userId) {
   //   return null;
   // }
   return (

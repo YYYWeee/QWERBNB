@@ -1,7 +1,7 @@
 //get all spots
 
 import { useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSpotsThunk } from "../../store/spots"
 import './Spots.css'
@@ -18,10 +18,6 @@ function Spots() {
 
   if (!spots) return null;
 
-  // const handleClick = (id) => {
-  //   history.push(`/spots/${id}`);
-  // };
-
   return (
     <>
       <div id="spots-container">
@@ -29,12 +25,14 @@ function Spots() {
           return (
             <>
               <div className="single-spot-container" key={spot.id}>
-                <img
-                  className="preview-image"
-                  src={spot.previewImage}
-                  alt={spot.previewImage}
-                // onClick={handleClick(spot.id)}
-                />
+                <Link to={`spots/${spot.id}`}>
+                  <img
+                    className="preview-image"
+                    src={spot.previewImage}
+                    alt={spot.previewImage}
+
+                  />
+                </Link>
                 <div className="location_rating">
                   <p className="location">{spot.city}, {spot.state}</p>
 

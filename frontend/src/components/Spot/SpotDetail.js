@@ -16,6 +16,7 @@ function SpotDetail() {
 
 
   useEffect(() => {
+    console.log('+++++++++++++++id+++++++++++++',id)
     dispatch(getSpotDetailThunk(id));
   }, [dispatch, id]);
 
