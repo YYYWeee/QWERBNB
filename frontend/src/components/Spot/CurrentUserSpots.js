@@ -9,6 +9,7 @@ import React from "react";
 import EditSpotForm from './EditSpotForm';
 import DeleteReviewModal from '../DeleteReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import { Link } from "react-router-dom";
 
 function CurrentUserSpots() {
   const history = useHistory();
@@ -74,11 +75,13 @@ function CurrentUserSpots() {
               return (
                 <>
                   <div className="single-spot-container" key={spot.id}>
-                    <img
-                      className="preview-image"
-                      src={spot.previewImage}
-                      alt={spot.previewImage}
-                    />
+                    {/* <Link to={`spots/${spot.id}`}> */}
+                      <img
+                        className="preview-image"
+                        src={spot.previewImage}
+                        alt={spot.previewImage}
+                      />
+                    {/* </Link> */}
                     <div className="location_rating">
                       <p className="location">{spot.city}, {spot.state}</p>
 

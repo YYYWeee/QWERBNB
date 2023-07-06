@@ -181,9 +181,9 @@ const spotReducer = (state = initialState, action) => {
 
     case DELETE_SPOT:
       return {
-        allSpots: state.allSpots.filter(
-          (spot) => spot.id !== action.payload
-        ),
+        allSpots: state.allSpots.filter((spot) => {
+          return spot.id !== action.payload
+        }),
         spot: state.spot,
       };
 
