@@ -5,10 +5,10 @@ import { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { getAllSpotsThunk } from "../../store/spots"
 import './Spots.css'
-// import { useHistory } from "react-router-dom";
+import { useHistory } from "react-router-dom";
 
 function Spots() {
-  // const history = useHistory();
+  const history = useHistory();
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.allSpots);
 

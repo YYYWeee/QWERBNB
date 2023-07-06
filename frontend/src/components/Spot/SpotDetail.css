@@ -26,7 +26,21 @@
 
 .review-container {
   display: grid;
+}
 
+.description {
+  display: flex;
+  flex-direction: row;
+  margin-top: 40px;
+  width: 100%;
+  gap: 100px;
 
+}
 
+.reserve-button {
+  display: flex;
+}
+
+.name-and-description{
+  width: 80%;
 }
