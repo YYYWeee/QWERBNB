@@ -92,3 +92,20 @@ div {
   /* margin-top: 10px; */
   /* width: 100%; */
 }
+
+.create-new-spot-button{
+  text-decoration: none;
+  padding-top: 10px;
+  align-items: center;
+  display: flex;
+  width: fit-content;
+
+}
+
+
+
+.ProfileButton-button-container{
+  display: flex;
+  flex-direction: row;
+  gap: 150px;
+}

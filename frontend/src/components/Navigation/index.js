@@ -18,8 +18,14 @@ function Navigation({ isLoaded }) {
             <h2>QWERBNB</h2>
           </NavLink>
         </div>
-        <div className="menu">
-          {isLoaded && <ProfileButton user={sessionUser} id='QWERBNB' />}
+        <div className='ProfileButton-button-container'>
+          <div className='create-button-container'>
+            {sessionUser !== null &&
+              <NavLink exact to="/spots/new" className='create-new-spot-button'>Create a New Spot</NavLink>}
+          </div>
+          <div className="menu">
+            {isLoaded && <ProfileButton user={sessionUser} id='QWERBNB' />}
+          </div>
         </div>
       </div>
 

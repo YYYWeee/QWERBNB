@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useEffect } from "react";
 import StarRating from "./StarRating";
-import createAReviewThunk from '../../store/reviews'
+import {createAReviewThunk} from '../../store/reviews'
 import { useHistory } from "react-router-dom";
 
 
@@ -25,6 +25,7 @@ function PostReviewModal(spotId) {
 
 
   const handleSubmit = async (e) => {
+
     e.preventDefault();
     // const payload = {
     //   spotIdF,
@@ -38,6 +39,7 @@ function PostReviewModal(spotId) {
     let createdReview;
 
     try {
+    console.log('in the try ',userId, spotIdF, review, stars)
       createdReview = await dispatch(createAReviewThunk(userId, spotIdF, review, stars))
       // createdReview = await dispatch(createAReviewThunk(userId, spotIdF, {review, stars}))
       console.log(spotIdF, userId, review, stars)

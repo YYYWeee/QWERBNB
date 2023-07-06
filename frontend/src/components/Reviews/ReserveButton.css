@@ -1,0 +1,33 @@
+.reserve-container {
+  align-items: center;
+  border: 1px solid #000;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+
+
+  height: 100px;
+  min-width: 310px;
+  padding: 30px 30px;
+}
+/*
+.header{
+  display: flex;
+  width: 100%;
+  align-items: center;
+  justify-content: space-between;
+  flex-direction: row;
+} */
+
+/* button{
+
+  background-color: #DE006F;
+  border: none;
+  border-radius: 7px;
+  color: white;
+  cursor: pointer;
+  font-size: 16px;
+  height: 40px;
+  padding: 14px 24px 34px;
+
+} */

@@ -260,16 +260,12 @@ const validateCreateSpot = [
     .exists({ checkFalsy: true })
     .notEmpty()
     .withMessage('Price per day is required'),
-  check('lat')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .isFloat({ min: -90, max: 90 })
-    .withMessage('Latitude is not valid'),
-  check('lng')
-    .exists({ checkFalsy: true })
-    .notEmpty()
-    .isFloat({ min: -180, max: 180 })
-    .withMessage('Longitude is not valid'),
+  // check('lat')
+  //   .isFloat({ min: -90, max: 90 })
+  //   .withMessage('Latitude is not valid'),
+  // check('lng')
+  //   .isFloat({ min: -180, max: 180 })
+  //   .withMessage('Longitude is not valid'),
   handleValidationErrors
 ];
 
@@ -499,6 +495,8 @@ const createReviewChecker = (req, res, next) => {
 router.post('/:id/reviews', requireAuth, createReviewChecker, async (req, res, next) => {
   const { review, stars } = req.body;
   const { user } = req;
+  const spotId = req.params.spotId;
+  const userId = req.user.id;
   let oneSpot = await Spot.findByPk(req.params.id);
   if (!oneSpot) {
     res.statusCode = 404
@@ -507,7 +505,8 @@ router.post('/:id/reviews', requireAuth, createReviewChecker, async (req, res, n
 
   const targetReview = await Review.findAll({
     where: {
-      spotId: req.params.id
+      spotId,
+      userId
     }
   })
 

@@ -9,10 +9,13 @@ const getReviews = (reviews) => ({
   payload: reviews
 });
 
-const createReview = (review) => ({
+const createReview = (review) =>
+{
+  console.log('review',review)
+  return {
   type: CREATE_REVIEW,
   payload: review
-});
+}};
 
 // Thunk
 //Get all Reviews by Spot Id
@@ -35,9 +38,11 @@ export const createAReviewThunk = (userId, spotId, review, star) => async (dispa
 
   if (response.ok) {
     const newReview = await response.json();
+    console.log('newReview', newReview)
     dispatch(createReview(newReview));
     return newReview;
   }
+  console.log('didnt enter')
 };
 
 
@@ -52,7 +57,9 @@ const reviewReducer = (state = initialState, action) => {
         review: state.review,
         reviews: action.payload
       };
+
     case CREATE_REVIEW:
+      console.log('action',action)
       return {
         review: state.review,
         reviews: [...state.reviews, action.payload]

@@ -21,7 +21,7 @@ const getSpot = (spot) => ({
 export const getAllSpotsThunk = () => async (dispatch) => {
   const res = await csrfFetch("/api/spots");
   const data = await res.json();
-  console.log('data', data)
+  // console.log('data', data)
   if (data.Spots) {
     dispatch(getSpots(data.Spots))
   };
@@ -35,8 +35,6 @@ export const getCurrentUserSpotsThunk = () => async (dispatch) => {
   };
 }
 
-
-//pending
 export const createNewSpotThunk = (spotData, imageData) => async (dispatch) => {
   const response = await csrfFetch(`/api/spots`, {
     method: "POST",
@@ -45,32 +43,35 @@ export const createNewSpotThunk = (spotData, imageData) => async (dispatch) => {
   });
   const newSpot = await response.json();
   if (newSpot) {
-    return dispatch(addSpotImage(newSpot, imageData));
+    return dispatch(addSpotImage(newSpot, imageData)); //imageData is an array
   }
 }
-//pending
 export const addSpotImage = (spot, image) => async (dispatch) => {
 
   if (image) {
     spot.SpotImages = [];
     for (let i = 0; i < image.length; i++) {
-      if (image.url) {
-
+      if (image[i].url) {
+        console.log(image[i].url)
         const response = await csrfFetch(`/api/spots/${spot.id}/images`, {
           method: "POST",
           headers: { "Content-Type": "application/json" },
           body: JSON.stringify({
             url: image[i].url,
-            preview: "true",
+            preview: "true"
           }),
         })
         const newImage = await response.json();
         spot.SpotImages.push(newImage);
+        console.log('newImage', newImage)
       }
+      console.log('spot.SpotImages', spot.SpotImages) //issue
     }
   }
-  dispatch(getSpots(spot));
+  dispatch(getSpot(spot));
+  return spot.id;
 }
+
 
 export const getSpotDetailThunk = (id) => async (dispatch) => {
   const res = await csrfFetch(`/api/spots/${id}`);
@@ -88,7 +89,7 @@ const initialState = { allSpots: [], spot: {} };
 const spotReducer = (state = initialState, action) => {
   switch (action.type) {
     case GET_ALL_SPOTS:
-      console.log('allspots', action.payload)
+      // console.log('allspots', action.payload)
       return {
         allSpots: action.payload,
         spot: state.spot

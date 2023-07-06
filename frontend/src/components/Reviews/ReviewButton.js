@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from "react-redux";
 import PostReviewModal from '../PostReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
-function ReviewButton({id}) {
+function ReviewButton({ id }) {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
   const dispatch = useDispatch();
@@ -33,39 +33,61 @@ function ReviewButton({id}) {
 
 
 
-  if (!reviews) {
-    return null;
-  }
-  if (!reviews[0]) {
-    return null;
+  // if (!reviews) {
+  //   return null;
+  // }
+  // if (!reviews[0]) {
+  //   return null;
+  // }
+
+  if(!reviews[0]==null){
+    const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
+    if (reviewByCurrentUser) return null
   }
 
-  const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
-  if (reviewByCurrentUser) return null
+
+  // const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
+  // if (reviewByCurrentUser) return null
+
+
 
 
   let action;
-  if (reviews.length > 0) {
-    action = 'Post a review'
-  } else {
+  if (reviews[0] ==null) {
     action = 'Be the first to post a review!'
+  } else {
+    action = 'Post a review'
   }
 
 
 
   return (
     <>
-      {/* <h1>{action}</h1> */}
-      <div className="post-review-button">
-                <p>
-                  <OpenModalMenuItem
-                    itemText="How was your stay?"
-                    onItemClick={closeMenu}
-                    modalComponent={<PostReviewModal id={id} />}
-                  />
-                </p>
+      {/* {!reviews ? */}
+      {reviews[0]==null ?
+        (<div className="post-review-button">
+          <p>
+            <OpenModalMenuItem
+              itemText="Post your review"
+              onItemClick={closeMenu}
+              modalComponent={<PostReviewModal id={id} />}
+            />
+          </p>
+          <p>{action}</p>
 
-              </div>
+        </div>) :
+        (<div className="post-review-button">
+        <p>
+          <OpenModalMenuItem
+            itemText="Post your review"
+            onItemClick={closeMenu}
+            modalComponent={<PostReviewModal id={id} />}
+          />
+        </p>
+        <p>{action}</p>
+
+      </div>)
+      }
     </>
   )
 }
