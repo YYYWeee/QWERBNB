@@ -3,6 +3,11 @@ import { csrfFetch } from "./csrf";
 
 const GET_REVIEW = "spot/getAllReviews"
 const CREATE_REVIEW = "spot/newReview"
+const DELETE_REVIEW = "review/deleteReview";
+
+
+
+
 //action creator
 const getReviews = (reviews) => ({
   type: GET_REVIEW,
@@ -17,10 +22,17 @@ const createReview = (review) => {
   }
 };
 
+const deleteReview = (id) => {
+  return {
+    type: DELETE_REVIEW,
+    payload: id
+  }
+};
+
 // Thunk
 //Get all Reviews by Spot Id
 export const getReviewsThunk = (id) => async (dispatch) => {
-  console.log('~~~~~~~~~~~id~~~~~~~~',id)
+  console.log('~~~~~~~~~~~id~~~~~~~~', id)
   const data = await (await csrfFetch(`/api/spots/${id}/reviews`)).json();
   if (data.Reviews) dispatch(getReviews(data.Reviews));
 };
@@ -28,7 +40,7 @@ export const getReviewsThunk = (id) => async (dispatch) => {
 
 // export const createAReviewThunk = (userId,spotId,review) => async (dispatch) => {
 export const createAReviewThunk = (user, spotId, review, star) => async (dispatch) => {
-  console.log('in the thunk',{ user, spotId, review, star})
+  console.log('in the thunk', { user, spotId, review, star })
   // console.log('spotId', spotId['id'])
   // let id = parseInt(spotId['id'])
   // // console.log(typeof(id))  //number
@@ -56,6 +68,17 @@ export const createAReviewThunk = (user, spotId, review, star) => async (dispatc
 
 };
 
+//now
+export const deleteReviewThunk = (id, spotId) => async (dispatch) => {
+  const res = await csrfFetch(`/api/reviews/${id}`, {
+    method: "DELETE",
+    headers: { "Content-Type": "application/json" }
+  });
+
+  if (res.ok) {
+    dispatch(deleteReview(id));
+  }
+};
 
 //review: {}  is reviews made by current user
 //reviews:[]  is for Geting all Reviews by Spot Id
@@ -75,6 +98,13 @@ const reviewReducer = (state = initialState, action) => {
         review: state.review,
         reviews: [...state.reviews, action.payload]
       }
+    case DELETE_REVIEW:
+      return {
+        review: {},
+        reviews: state.reviews.filter((review) => {
+          return review.id !== action.payload
+        }),
+      };
     default:
       return state;
   }
