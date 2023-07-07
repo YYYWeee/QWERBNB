@@ -193,7 +193,7 @@ function EditSpotForm() {
             type="submit"
             disabled={errors.length > 0}
           >
-            Submit
+            Update your Spot
           </button>
 
         </form>
