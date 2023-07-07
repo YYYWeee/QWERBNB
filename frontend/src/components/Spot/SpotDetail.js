@@ -15,8 +15,8 @@ function SpotDetail() {
   const user = useSelector((state) => state.session.user);
 
 
+
   useEffect(() => {
-    console.log('+++++++++++++++id+++++++++++++',id)
     dispatch(getSpotDetailThunk(id));
   }, [dispatch, id]);
 
@@ -80,6 +80,8 @@ function SpotDetail() {
               </div>
               <div className="reserve-button">
                 <ReserveButton />
+                {/* now */}
+
               </div>
             </div>
             <div className="review-container">

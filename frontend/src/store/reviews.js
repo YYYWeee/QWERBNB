@@ -41,14 +41,7 @@ export const getReviewsThunk = (id) => async (dispatch) => {
 // export const createAReviewThunk = (userId,spotId,review) => async (dispatch) => {
 export const createAReviewThunk = (user, spotId, review, star) => async (dispatch) => {
   console.log('in the thunk', { user, spotId, review, star })
-  // console.log('spotId', spotId['id'])
-  // let id = parseInt(spotId['id'])
-  // // console.log(typeof(id))  //number
-  // console.log('spotId.id', spotId.id)
-  // const response = await csrfFetch(`/api/spots/${id}/reviews`, {
   const response = await csrfFetch(`/api/spots/${spotId.id}/reviews`, {
-
-
     method: "POST",
     headers: {
       "Content-Type": "application/json"
