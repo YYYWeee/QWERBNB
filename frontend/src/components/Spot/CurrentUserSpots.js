@@ -7,7 +7,7 @@ import { useHistory } from "react-router-dom";
 import { Redirect } from "react-router-dom";
 import React from "react";
 import EditSpotForm from './EditSpotForm';
-import DeleteReviewModal from '../DeleteReviewModal';
+import DeleteSpotModal from '../DeleteSpotModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import { Link } from "react-router-dom";
 
@@ -45,7 +45,7 @@ function CurrentUserSpots() {
 
 
   useEffect(() => {
-    // console.log('hello')
+
     dispatch(getCurrentUserSpotsThunk());
   }, [dispatch]);
 
@@ -106,7 +106,7 @@ function CurrentUserSpots() {
                           <OpenModalMenuItem
                             itemText="Delete"
                             onItemClick={closeMenu}
-                            modalComponent={<DeleteReviewModal id={spot.id} />}
+                            modalComponent={<DeleteSpotModal id={spot.id} />}
                           />
                         </p>
 

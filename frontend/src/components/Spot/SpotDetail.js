@@ -136,10 +136,12 @@ function SpotDetail() {
               </div>
             </div>
             <div className="description">
+              <div className="name-and-description">
 
+                <h2>Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h2>
+                <h4>{spot.description}</h4>
 
-              <h2>Hosted By {spot.Owner?.firstName} {spot.Owner?.lastName}</h2>
-              <h4>{spot.description}</h4>
+              </div>
             </div>
             <div className="review-container">
 

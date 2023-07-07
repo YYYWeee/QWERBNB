@@ -1,8 +1,12 @@
 import { useEffect } from "react";
+import { useState, useRef } from "react";
+
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import { getReviewsThunk } from "../../store/reviews";
-import {deleteReviewThunk} from "../../store/reviews";
+import { deleteReviewThunk } from "../../store/reviews";
+import DeleteReviewModal from '../DeleteReviewModal';
+import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 
 
 function dateConvert(date) {
@@ -16,11 +20,43 @@ function dateConvert(date) {
 
 function Review() {
   const user = useSelector((state) => state.session.user);
-  const { id } = useParams();   //spotId
+  let { id } = useParams();   //spotId
+  id = parseInt(id)
   const dispatch = useDispatch();
   const reviews = useSelector((state) => state.reviews.reviews); //extract User
   const spot = useSelector((state) => state.spots.spot); //extract avgStarRating
   let unit;
+
+  console.log('spotId!!!!!',id)
+  console.log(typeof(id))
+
+
+  const [showMenu, setShowMenu] = useState(false);
+  const ulRef = useRef();
+
+
+  const openMenu = () => {
+    if (showMenu) return;
+    setShowMenu(true);
+  };
+
+  useEffect(() => {
+    if (!showMenu) return;
+
+    const closeMenu = (e) => {
+      if (!ulRef.current.contains(e.target)) {
+        setShowMenu(false);
+      }
+    };
+
+    document.addEventListener('click', closeMenu);
+
+    return () => document.removeEventListener("click", closeMenu);
+  }, [showMenu]);
+
+  const closeMenu = () => setShowMenu(false);
+
+
 
   if (reviews.length === 1) {
     unit = 'review'
@@ -35,6 +71,10 @@ function Review() {
   //     return true
   //   }
   // }
+
+
+
+
 
   useEffect(() => {
     dispatch(getReviewsThunk(id));
@@ -57,7 +97,7 @@ function Review() {
   //   history.push(path)
   // }
 
-  const handleDelete=(reviewId) => {
+  const handleDelete = (reviewId) => {
     dispatch(deleteReviewThunk(reviewId, id));  //pass reviewid and spot id as arguments
     // closeModal();
   }
@@ -89,10 +129,25 @@ function Review() {
                 <div className="text">
                   <p>{review.review}</p>
                 </div>
+
+
+                {/* <div className="delete-review-button">
+                  {user && review.userId === user.id && <button onClick={() => handleDelete(review.id, id)} className="delete-review-button">delete</button>}
+                </div> */}
+
                 <div className="delete-review-button">
-                  {user && review.userId === user.id && <button onClick={()=>handleDelete(review.id,id)} className="delete-review-button">delete</button>}
+                  <p>{user && review.userId === user.id  &&
+                    (<OpenModalMenuItem
+                      itemText="Delete"
+                      onItemClick={closeMenu}
+                      modalComponent={<DeleteReviewModal id={review.id} spotId={id} />}
+                    />)}
+
+                  </p>
+
 
                 </div>
+
 
               </div>
             )

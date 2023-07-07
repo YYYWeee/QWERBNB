@@ -6,13 +6,14 @@ import { useDispatch, useSelector } from "react-redux";
 import { getAllSpotsThunk } from "../../store/spots"
 import './Spots.css'
 import { useHistory } from "react-router-dom";
+import Tooltip from "./Tooltip";
 
 function Spots() {
   const history = useHistory();
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.allSpots);
 
-  const handleClicker=(id)=>{
+  const handleClicker = (id) => {
     let path = `/spots/${id}`;
     history.push(path)
   }
@@ -30,14 +31,16 @@ function Spots() {
           return (
             <>
               <div className="single-spot-container" key={spot.id}>
-                <Link to={`spots/${spot.id}`}>
-                  <img
-                    className="preview-image"
-                    src={spot.previewImage}
-                    alt={spot.previewImage}
+                <Tooltip content={spot.name} direction='top'>
+                  <Link to={`spots/${spot.id}`}>
+                    <img
+                      className="preview-image"
+                      src={spot.previewImage}
+                      alt={spot.previewImage}
 
-                  />
-                </Link>
+                    />
+                  </Link>
+                </Tooltip>
                 <div className="location_rating" onClick={() => handleClicker(spot.id)}>
 
                   <p className="location">{spot.city}, {spot.state}</p>

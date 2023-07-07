@@ -5,9 +5,6 @@ const GET_SINGLE_SPOT = "spot/getSingleSpotDetail"
 const UPDATE_SPOT = "spot/update"
 const DELETE_SPOT = "spot/deleteSpot";
 
-//for review part reserve box and review detail need to update as well
-// const ADD_REVIEWS = "spot/updateStarsAndNumReviewsDueToAdd";
-// const DELETE_REVIEW = "spot/updateStarsAndNumReviewsDueToDelete";
 
 
 //action creator
@@ -25,26 +22,7 @@ const deleteSpot = (id) => ({
    type: DELETE_SPOT,
    payload: id
   });
-//now
-  // export const updateReviewinfoActionforAddReview = (avgStars) => ({
-  //   type: ADD_REVIEWS,
-  //   payload: avgStars,
-  // });
 
-  // const updateReviewinfoActionfordeleteReview = (avgStars) => ({
-  //   type: DELETE_REVIEW,
-  //   payload: avgStars,
-  // });
-
-
-
-
-// const updateSpotAction = (spot) => {
-//   return {
-//     type: UPDATE_SPOT,
-//     payload: spot
-//   }
-// }
 
 
 // Thunk
