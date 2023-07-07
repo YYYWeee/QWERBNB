@@ -42,13 +42,13 @@ function Review() {
 
 
 
-  if (!reviews) {
-    return null;
-  }
+  // if (!reviews) {
+  //   return null;
+  // }
   // if (!reviews[0]) {
   //   console.log('no reviews')
   //   return null;
-  // // }
+  //  }
   // if (!reviews[0].userId) {
   //   return null;
   // }
@@ -90,7 +90,7 @@ function Review() {
                   <p>{review.review}</p>
                 </div>
                 <div className="delete-review-button">
-                  {review.userId === user.id && <button onClick={()=>handleDelete(review.id,id)} className="delete-review-button">delete</button>}
+                  {user && review.userId === user.id && <button onClick={()=>handleDelete(review.id,id)} className="delete-review-button">delete</button>}
 
                 </div>
 
