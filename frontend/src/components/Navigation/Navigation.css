@@ -1,11 +1,12 @@
-
 .hidden {
   display: none
 }
-.active{
+
+.active {
   /* width: fit-content; */
   width: 300px;
 }
+
 #QWERBNB {
   display: flex;
   align-items: center;
@@ -76,6 +77,16 @@ div {
 
 }
 
+#manage-your-spots {
+  text-decoration: none;
+  color: black;
+  border-top: solid black 1px;
+}
+
+.logout-btn {
+  border-top: solid black 1px;
+}
+
 .fa-user-circle {
   margin-top: 8px;
 }
@@ -93,7 +104,7 @@ div {
   /* width: 100%; */
 }
 
-.create-new-spot-button{
+.create-new-spot-button {
   text-decoration: none;
   padding-top: 10px;
   align-items: center;
@@ -104,7 +115,7 @@ div {
 
 
 
-.ProfileButton-button-container{
+.ProfileButton-button-container {
   display: flex;
   flex-direction: row;
   gap: 150px;

@@ -12,6 +12,11 @@ function Spots() {
   const dispatch = useDispatch();
   const spots = useSelector((state) => state.spots.allSpots);
 
+  const handleClicker=(id)=>{
+    let path = `/spots/${id}`;
+    history.push(path)
+  }
+
   useEffect(() => {
     dispatch(getAllSpotsThunk());
   }, [dispatch]);
@@ -33,12 +38,13 @@ function Spots() {
 
                   />
                 </Link>
-                <div className="location_rating">
+                <div className="location_rating" onClick={() => handleClicker(spot.id)}>
+
                   <p className="location">{spot.city}, {spot.state}</p>
 
                   {spot.avgRating ? (<p className="rating"> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p>New</p>)}
                 </div>
-                <div className="price">
+                <div className="price" onClick={() => handleClicker(spot.id)}>
                   <p>${spot.price} night</p>
                 </div>
 

@@ -58,6 +58,10 @@ function CurrentUserSpots() {
     let path = `/spots/${id}/edit`;
     history.push(path);   //pending: why always redirect the edit page of  newest created spot  page
   };
+  const handleClicker=(id)=>{
+    let path = `/spots/${id}`;
+    history.push(path)
+  }
 
   return (
     <>
@@ -75,19 +79,20 @@ function CurrentUserSpots() {
               return (
                 <>
                   <div className="single-spot-container" key={spot.id}>
-                    {/* <Link to={`spots/${spot.id}`}> */}
+
                       <img
                         className="preview-image"
                         src={spot.previewImage}
                         alt={spot.previewImage}
+                        onClick={() => handleClicker(spot.id)}
                       />
-                    {/* </Link> */}
-                    <div className="location_rating">
-                      <p className="location">{spot.city}, {spot.state}</p>
 
-                      {!spot.avgRating == null ? (<p className="rating"> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p>★New</p>)}
+                    <div className="location_rating" >
+                      <p className="location"  onClick={() => handleClicker(spot.id)}>{spot.city}, {spot.state}</p>
+
+                      {!spot.avgRating == null ? (<p className="rating" onClick={() => handleClicker(spot.id)}> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p onClick={() => handleClicker(spot.id)}>★New</p>)}
                     </div>
-                    <div className="price">
+                    <div className="price"  onClick={() => handleClicker(spot.id)}>
                       <p>${spot.price} night</p>
                     </div>
                     <div className="operation">

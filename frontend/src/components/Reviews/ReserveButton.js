@@ -1,13 +1,18 @@
 // import useSpot from "../../../../hooks/useSpot";
 // import Rating from "./Rating";
 import { useSelector } from "react-redux";
+import { useEffect } from "react";
 import './ReserveButton.css'
 
 
 function ReserveButton() {
-  const spot = useSelector((state) => state.spots.spot);
+  let spot = useSelector((state) => state.spots.spot);
   const text = spot.numReviews > 1 ? "reviews" : "review";
   const rating = spot.numReviews > 0 ? '★' + spot.avgStarRating : '★ New';
+
+  useEffect(() => {
+
+  }, [spot.numReviews]);
 
   return (
     <div className="reserve-container">
