@@ -4,6 +4,7 @@ import * as sessionActions from "../../store/session";
 import { useDispatch } from "react-redux";
 import { useModal } from "../../context/Modal";
 import "./LoginForm.css";
+import { useEffect } from "react";
 
 function LoginFormModal() {
   const dispatch = useDispatch();
@@ -11,6 +12,30 @@ function LoginFormModal() {
   const [password, setPassword] = useState("");
   const [errors, setErrors] = useState({});
   const { closeModal } = useModal();
+  const [disable,setDisable] = useState(true)
+
+
+  const Demo = (e) => {
+    e.preventDefault()
+    return dispatch(sessionActions.login({ credential:"demo@user.io", password:"password" }))
+    .then(closeModal)
+    .catch(async (res) => {
+      const data = await res.json();
+      if (data && data.errors) {
+        setErrors(data.errors);
+      }
+    });
+}
+
+
+useEffect(()=>{
+  let disableButton = false
+
+  if (credential.length < 4  || password.length < 6) disableButton = true;
+  setDisable(disableButton)
+
+})
+
 
   const handleSubmit = (e) => {
     e.preventDefault();
@@ -24,6 +49,8 @@ function LoginFormModal() {
         }
       });
   };
+
+
 
   return (
     <>
@@ -50,7 +77,8 @@ function LoginFormModal() {
         {errors.credential && (
           <p>{errors.credential}</p>
         )}
-        <button type="submit">Log In</button>
+        <button type="submit" disabled={disable}>Log In</button>
+        <button className="login-demoUser"  type="demo"  onClick={Demo}>Demo User</button>
       </form>
     </>
   );

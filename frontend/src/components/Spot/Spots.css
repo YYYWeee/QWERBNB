@@ -23,10 +23,19 @@
 
 }
 
-.price{
- font-weight: bold;
+.price {
+  font-weight: bold;
+  cursor: pointer;
 }
 
-.preview-image{
+.preview-image {
+  cursor: pointer;
+}
+
+.location {
+  cursor: pointer;
+}
+
+.rating {
   cursor: pointer;
 }
