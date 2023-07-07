@@ -1,18 +1,23 @@
 // import useSpot from "../../../../hooks/useSpot";
 // import Rating from "./Rating";
-import { useSelector } from "react-redux";
+import { useSelector,useDispatch } from "react-redux";
+import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './ReserveButton.css'
-
+import { getSpotDetailThunk } from "../../store/spots";
 
 function ReserveButton() {
+  const { id } = useParams();
+  const dispatch = useDispatch();
   let spot = useSelector((state) => state.spots.spot);
   const text = spot.numReviews > 1 ? "reviews" : "review";
   const rating = spot.numReviews > 0 ? '★' + spot.avgStarRating : '★ New';
 
-  useEffect(() => {
-
-  }, [spot.numReviews]);
+  //pending
+  // useEffect(() => {
+  //   dispatch(getSpotDetailThunk(id));
+  //   console.log('here@@@@@@@@@@@@@@@@@@@',)
+  // }, [spot]);
 
   return (
     <div className="reserve-container">

@@ -52,11 +52,6 @@ function ReviewButton({ id }) {
   }
 
 
-  // const reviewByCurrentUser = reviews.find((review) => review.User.id === user.id)
-  // if (reviewByCurrentUser) return null
-
-
-
 
   let action;
   if (reviews[0] == null) {
