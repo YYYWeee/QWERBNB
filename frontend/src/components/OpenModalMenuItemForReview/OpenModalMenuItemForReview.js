@@ -1,9 +1,9 @@
 // frontend/src/components/Navigation/OpenModalMenuItem.js
 import React from 'react';
 import { useModal } from '../../context/Modal';
-import './OpenModalMenuItem.css'
+import './OpenModalMenuItemForReview.css'
 
-function OpenModalMenuItem({
+function OpenModalMenuItemForReview({
   modalComponent, // component to render inside the modal
   itemText, // text of the menu item that opens the modal
   onItemClick, // optional: callback function that will be called once the menu item that opens the modal is clicked
@@ -18,8 +18,8 @@ function OpenModalMenuItem({
   };
 
   return (
-    <button className={itemText}   onClick={onClick}>{itemText}</button>
+    <button className='button-OpenModalMenuItem' onClick={onClick}>{itemText}</button>
   );
 }
 
-export default OpenModalMenuItem;
+export default OpenModalMenuItemForReview;

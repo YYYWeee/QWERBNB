@@ -4,8 +4,8 @@ import { useEffect } from "react";
 import StarRating from "./StarRating";
 import {createAReviewThunk} from '../../store/reviews'
 import { useHistory } from "react-router-dom";
-
 import { useModal } from "../../context/Modal";
+import './index.css';
 
 function PostReviewModal(spotId) {
   const dispatch = useDispatch();
@@ -30,7 +30,7 @@ function PostReviewModal(spotId) {
 
     let createdReview;
     try {
-    console.log('in the try ',user, spotId, review, stars)
+    // console.log('in the try ',user, spotId, review, stars)
       createdReview = await dispatch(createAReviewThunk(user, spotId, review, stars)) .then(closeModal)
 
       history.push(`/spots/${spotId.id}`);
@@ -43,22 +43,22 @@ function PostReviewModal(spotId) {
 
   return (
     <>
-      <div id="review-box">
-        <h3>How was your stay?</h3>
+      <div className="review-box">
+        <h3 className="title">How was your stay?</h3>
         <textarea
-          id="review-input"
-          placeholder="leave your review here..."
+          className="review-input"
+          placeholder="Leave your review here..."
           value={review}
           onChange={(e) => setReview(e.target.value)}
         />
         <StarRating stars={stars} setStars={setStars} />
 
         <button
-          className="submit-button"
+          className="button"
           onClick={handleSubmit}
           disabled={review.length < 10 || stars === 0}
         >
-          <p>Submit your review</p>
+          <p className="submit-button">Submit your review</p>
         </button>
 
       </div>

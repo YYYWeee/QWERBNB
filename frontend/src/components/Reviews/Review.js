@@ -7,7 +7,8 @@ import { getReviewsThunk } from "../../store/reviews";
 import { deleteReviewThunk } from "../../store/reviews";
 import DeleteReviewModal from '../DeleteReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
-
+import OpenModalMenuItemForReview from "../OpenModalMenuItemForReview/OpenModalMenuItemForReview"
+import './Review.css'
 
 function dateConvert(date) {
   const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -136,15 +137,12 @@ function Review() {
                 </div> */}
 
                 <div className="delete-review-button">
-                  <p>{user && review.userId === user.id  &&
-                    (<OpenModalMenuItem
+                  {user && review.userId === user.id  &&
+                    (<OpenModalMenuItemForReview
                       itemText="Delete"
                       onItemClick={closeMenu}
                       modalComponent={<DeleteReviewModal id={review.id} spotId={id} />}
                     />)}
-
-                  </p>
-
 
                 </div>
 

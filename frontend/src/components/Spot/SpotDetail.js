@@ -31,7 +31,7 @@ function SpotDetail() {
     <>
       {user ?
         (<div className="parent-container">
-          <div className="header">
+          <div className="spot-detail-header">
             <h1>{spot.name}</h1>
             <h4>{spot.city}, {spot.state},{spot.country}</h4>
           </div>
@@ -84,8 +84,12 @@ function SpotDetail() {
 
               </div>
             </div>
+
+
+
             <div className="review-container">
-              {spot.Owner.id !== user.id && <ReviewButton id={id} />}   {/* ID is spot id from url */}
+
+              {spot.Owner.id !== user.id && <ReviewButton id={id} />}   {/* ID is spot id from url *****rearrangement*/}
               <Review />
 
             </div>
@@ -93,7 +97,7 @@ function SpotDetail() {
 
         </div>) :
         (<div className="parent-container">
-          <div className="header">
+          <div className="spot-detail-header">
             <h1>{spot.name}</h1>
             <h4>{spot.city}, {spot.state},{spot.country}</h4>
           </div>
