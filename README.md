@@ -2,6 +2,7 @@
 
 ![Screenshot 2023-07-08 at 10 28 39 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/5a415339-2523-4146-937c-f62e336470ca)
 ![Screenshot 2023-07-08 at 10 29 02 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/6cd8a7de-6b28-4c2c-a377-e184d5bde895)
+![Screenshot 2023-07-08 at 10 30 31 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/cfc42b31-6eaa-4963-9054-19fa64257057)
 
 
 ## Database Schema Design
