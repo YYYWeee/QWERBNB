@@ -1,4 +1,4 @@
-# [Airbnb]
+# [QWERBNB]
 
 ## Database Schema Design
 
