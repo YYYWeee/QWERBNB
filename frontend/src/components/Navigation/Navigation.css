@@ -120,3 +120,20 @@ div {
   flex-direction: row;
   gap: 150px;
 }
+
+
+
+#logout-button{
+  background-color: rgb(160, 160, 160);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  font-family: sans-serif;
+  height: fit-content;
+  margin-top:10px ;
+  margin-left:10px ;
+}

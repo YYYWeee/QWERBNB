@@ -133,29 +133,38 @@ function NewSpotForm() {
           </label>
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("address"))}</p>
-          <label>
-            City
-            <input type='text'
-              name='city'
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-              placeholder="city"
-            />
-          </label>
-          <p className='errors'>{errors.filter((validation) =>
-            validation.includes("City"))}</p>
-          <label>
-            State
-            <input type='text'
-              name='state'
-              placeholder="state"
-              value={state}
-              onChange={(e) => setState(e.target.value)}
+          <div className="city-state">
+            <label className='city'>
+              City
+              <input type='text'
+                name='city'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+                placeholder="city"
+              />
+            </label>
+            {/* <p className='errors'>{errors.filter((validation) =>
+              validation.includes("City"))}</p> */}
+            <label className="state">
+              State
+              <input type='text'
+                name='state'
+                placeholder="state"
+                value={state}
+                onChange={(e) => setState(e.target.value)}
 
-            />
+              />
+            </label>
+            {/* <p className='errors'>{errors.filter((validation) =>
+              validation.includes("State"))}</p> */}
+          </div>
+          <label className="state-city-errors">
+            <span className='errors-city'>{errors.filter((validation) =>
+              validation.includes("City"))}</span>
+            <span className='errors-state'>{errors.filter((validation) =>
+              validation.includes("State"))}</span>
           </label>
-          <p className='errors'>{errors.filter((validation) =>
-            validation.includes("State"))}</p>
+
           <h3>Describe your place to guests</h3>
           <h4>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</h4>
           <textarea
@@ -195,13 +204,13 @@ function NewSpotForm() {
             validation.includes("Price"))}</p>
           <h3>Liven up your spot with photos</h3>
 
-            <h4>Submit a link to at least one photo to publish your spot </h4>
-            <input type='text'
-              name='previewUrl'
-              value={previewUrl}
-              onChange={(e) => setPreviewUrl(e.target.value)}
-              placeholder="Preview Image URL"
-            />
+          <h4>Submit a link to at least one photo to publish your spot </h4>
+          <input type='text'
+            name='previewUrl'
+            value={previewUrl}
+            onChange={(e) => setPreviewUrl(e.target.value)}
+            placeholder="Preview Image URL"
+          />
 
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("Preview"))}</p>

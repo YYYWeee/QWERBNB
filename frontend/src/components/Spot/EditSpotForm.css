@@ -15,3 +15,32 @@ button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
 }
+
+
+
+.city {
+  width: 300%;
+  display: inline-block;
+
+}
+
+.state {
+  width: 300%;
+  display: inline-block;
+
+}
+.city-state{
+  display: flex;
+  flex-direction: row;
+  gap:20px
+}
+.state-city-errors{
+  display: flex;
+  flex-direction: row;
+  /* gap:120px */
+  justify-content: space-around;
+}
+
+.state-city-errors{
+  color: red;
+}

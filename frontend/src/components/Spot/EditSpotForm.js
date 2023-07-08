@@ -103,7 +103,7 @@ function EditSpotForm() {
       price: price,
       // id: id
     }
-    let updatedSpot = await dispatch(updateSpot(newSpot,id));
+    let updatedSpot = await dispatch(updateSpot(newSpot, id));
     history.push(`/spots/${spot.id}`)
 
   }
@@ -135,26 +135,34 @@ function EditSpotForm() {
           </label>
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("address"))}</p>
-          <label>
-            City
-            <input type='text'
-              name='city'
-              value={city}
-              onChange={(e) => setCity(e.target.value)}
-            />
+          <div className="city-state">
+            <label className="city">
+              City
+              <input type='text'
+                name='city'
+                value={city}
+                onChange={(e) => setCity(e.target.value)}
+              />
+            </label>
+            {/* <p className='errors'>{errors.filter((validation) =>
+              validation.includes("City"))}</p> */}
+            <label className="state">
+              State
+              <input type='text'
+                name='state'
+                value={state}
+                onChange={(e) => setState(e.target.value)}
+              />
+            </label>
+            {/* <p className='errors'>{errors.filter((validation) =>
+              validation.includes("State"))}</p> */}
+          </div>
+          <label className="state-city-errors">
+            <span className='errors-city'>{errors.filter((validation) =>
+              validation.includes("City"))}</span>
+            <span className='errors-state'>{errors.filter((validation) =>
+              validation.includes("State"))}</span>
           </label>
-          <p className='errors'>{errors.filter((validation) =>
-            validation.includes("City"))}</p>
-          <label>
-            State
-            <input type='text'
-              name='state'
-              value={state}
-              onChange={(e) => setState(e.target.value)}
-            />
-          </label>
-          <p className='errors'>{errors.filter((validation) =>
-            validation.includes("State"))}</p>
           <h3>Describe your place to guests</h3>
           <h4>Mention the best features of your space, any special amentities like fast wifi or parking, and what you love about the neighborhood.</h4>
           <textarea
@@ -192,7 +200,7 @@ function EditSpotForm() {
             validation.includes("Price"))}</p>
 
           <button
-          className="update-btn"
+            className="update-btn"
             type="submit"
             disabled={errors.length > 0}
           >
