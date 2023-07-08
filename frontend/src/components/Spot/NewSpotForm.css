@@ -1,8 +1,47 @@
-
 .errors {
   color: red;
   font-size: 12px;
   height: 15px;
   width: 220px;
   margin: 3px;
+}
+
+.new-spot {
+  display: block;
+  margin: auto;
+  width: 40%;
+  /* text-align: justify;
+  text-justify: auto; */
+
+}
+
+
+#desscription{
+  height: 400px;
+  width: 100%;
+}
+
+input {
+  width: 100%;
+}
+.submit-btn{
+  background-color: rgb(160, 160, 160);
+  border: none;
+  color: white;
+  padding: 10px 15px;
+  text-align: center;
+  font-weight: bold;
+  display: inline-block;
+  font-size: 14px;
+  font-family: sans-serif;
+  height: fit-content;
+
+}
+button:disabled {
+  cursor: not-allowed;
+  pointer-events: all !important;
+}
+
+.errors{
+  width: 100%;
 }

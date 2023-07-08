@@ -58,45 +58,65 @@ function CurrentUserSpots() {
     let path = `/spots/${id}/edit`;
     history.push(path);   //pending: why always redirect the edit page of  newest created spot  page
   };
-  const handleClicker=(id)=>{
+  const handleClicker = (id) => {
     let path = `/spots/${id}`;
+    history.push(path)
+  }
+  const redirectToCreateForm = () => {
+    let path = `/spots/new`;
     history.push(path)
   }
 
   return (
     <>
       <div className="header">
-        <h2>Manage your spots</h2>
+        <div className="title">
+          <h1>Manage your spots</h1>
+
+          <div className="button-container">
+            <button className="create-new-spot-btn" onClick={() => redirectToCreateForm()}>
+              Create a New Spot
+            </button>
+          </div>
+        </div>
       </div>
       {spots.length === 0 ?
         (
-          <h2>You don't have any spots</h2>
+          <div>
+            <h2>You don't have any spots</h2>
+            {/* <Link to={`spots/spots/new}`}>Create a New Spot</Link> */}
+            {/* <button onClick={() => redirectToCreateForm()}>
+              Create a New Spot
+            </button> */}
+          </div>
+
         )
         :
         (
           <div className="spots-container">
+
             {spots.length > 0 && spots.map((spot) => {
               return (
                 <>
                   <div className="single-spot-container" key={spot.id}>
 
-                      <img
-                        className="preview-image"
-                        src={spot.previewImage}
-                        alt={spot.previewImage}
-                        onClick={() => handleClicker(spot.id)}
-                      />
+                    <img
+                      className="preview-image"
+                      src={spot.previewImage}
+                      alt={spot.previewImage}
+                      onClick={() => handleClicker(spot.id)}
+                    />
 
                     <div className="location_rating" >
-                      <p className="location"  onClick={() => handleClicker(spot.id)}>{spot.city}, {spot.state}</p>
+                      <p className="location" onClick={() => handleClicker(spot.id)}>{spot.city}, {spot.state}</p>
 
                       {!spot.avgRating == null ? (<p className="rating" onClick={() => handleClicker(spot.id)}> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p onClick={() => handleClicker(spot.id)}>★New</p>)}
                     </div>
-                    <div className="price"  onClick={() => handleClicker(spot.id)}>
+                    <div className="price" onClick={() => handleClicker(spot.id)}>
                       <p>${spot.price} night</p>
                     </div>
                     <div className="operation">
-                      <button onClick={() => handleUpdate(spot.id)}>
+                      <button className="update-btn" onClick={() => handleUpdate(spot.id)}>
 
                         update
                       </button>
@@ -109,8 +129,6 @@ function CurrentUserSpots() {
                             modalComponent={<DeleteSpotModal id={spot.id} />}
                           />
                         </p>
-
-
                       </div>
                     </div>
 

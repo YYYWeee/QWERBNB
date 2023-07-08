@@ -117,7 +117,8 @@ function NewSpotForm() {
             <input type='text'
               name='country'
               value={country}
-              onChange={(e) => setCountry(e.target.value)} />
+              onChange={(e) => setCountry(e.target.value)}
+              placeholder="country" />
           </label>
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("Country"))}</p>
@@ -127,6 +128,7 @@ function NewSpotForm() {
               name='address'
               value={address}
               onChange={(e) => setAddress(e.target.value)}
+              placeholder="address"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -137,6 +139,7 @@ function NewSpotForm() {
               name='city'
               value={city}
               onChange={(e) => setCity(e.target.value)}
+              placeholder="city"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -145,8 +148,10 @@ function NewSpotForm() {
             State
             <input type='text'
               name='state'
+              placeholder="state"
               value={state}
               onChange={(e) => setState(e.target.value)}
+
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -158,9 +163,9 @@ function NewSpotForm() {
             name='desscription'
             onChange={e => setDescription(e.target.value)}
             value={description}
+            placeholder="Please write at least 30 characters"
           />
-          <p className='errors'>{errors.filter((validation) =>
-            validation.includes("Description"))}</p>
+          <p className='errors'>{errors.filter((validation) => validation.includes("Description"))}</p>
           <h3>Create a title for your spot</h3>
           <h4>Catch guests' attention with a spot title that highlights what makes your place special.</h4>
           <label>
@@ -168,6 +173,7 @@ function NewSpotForm() {
               name='Name'
               value={name}
               onChange={(e) => setName(e.target.value)}
+              placeholder="Name of your spot"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -182,19 +188,21 @@ function NewSpotForm() {
               name='price'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              placeholder="Price per night (USD)"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("Price"))}</p>
           <h3>Liven up your spot with photos</h3>
-          <label>
-            <h4>Submit a link to at least one photo to publish your spot.</h4>
+
+            <h4>Submit a link to at least one photo to publish your spot </h4>
             <input type='text'
               name='previewUrl'
               value={previewUrl}
               onChange={(e) => setPreviewUrl(e.target.value)}
+              placeholder="Preview Image URL"
             />
-          </label>
+
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("Preview"))}</p>
           <label>
@@ -202,6 +210,7 @@ function NewSpotForm() {
               name='image1'
               value={image1}
               onChange={(e) => setImage1(e.target.value)}
+              placeholder="Image URL"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -211,6 +220,7 @@ function NewSpotForm() {
               name='image2'
               value={image2}
               onChange={(e) => setImage2(e.target.value)}
+              placeholder="Image URL"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -220,6 +230,7 @@ function NewSpotForm() {
               name='image3'
               value={image3}
               onChange={(e) => setImage3(e.target.value)}
+              placeholder="Image URL"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
@@ -229,17 +240,18 @@ function NewSpotForm() {
               name='image4'
               value={image4}
               onChange={(e) => setImage4(e.target.value)}
+              placeholder="Image URL"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>
             validation.includes("Image4"))}</p>
 
-          <button
+          <button className="submit-btn"
             type="submit"
             // if it is true, button  will be disabled
             disabled={errors.length > 0}
           >
-            Submit
+            Create Spot
           </button>
         </form>
 

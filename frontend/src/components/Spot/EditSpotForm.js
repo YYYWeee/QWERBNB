@@ -5,6 +5,8 @@ import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import { getSpotDetailThunk } from "../../store/spots";
 import { updateSpot } from "../../store/spots";
+import "./EditSpotForm.css"
+
 
 function EditSpotForm() {
   const { id } = useParams();
@@ -190,6 +192,7 @@ function EditSpotForm() {
             validation.includes("Price"))}</p>
 
           <button
+          className="update-btn"
             type="submit"
             disabled={errors.length > 0}
           >

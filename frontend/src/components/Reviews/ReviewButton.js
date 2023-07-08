@@ -2,6 +2,7 @@ import { useEffect, useState, useRef } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import PostReviewModal from '../PostReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
+import OpenModalMenuItemForReview from "../OpenModalMenuItemForReview/OpenModalMenuItemForReview"
 
 function ReviewButton({ id }) {
   const user = useSelector((state) => state.session.user);
@@ -68,7 +69,7 @@ function ReviewButton({ id }) {
       {reviews[0] == null ?
         (<div className="post-review-button">
           <p>
-            <OpenModalMenuItem
+            <OpenModalMenuItemForReview
               itemText="Post your review"
               onItemClick={closeMenu}
               modalComponent={<PostReviewModal id={id} />}
@@ -79,7 +80,7 @@ function ReviewButton({ id }) {
         </div>) :
         (<div className="post-review-button">
           <p>
-            <OpenModalMenuItem
+            <OpenModalMenuItemForReview
               itemText="Post your review"
               onItemClick={closeMenu}
               modalComponent={<PostReviewModal id={id} />}

@@ -1,6 +1,6 @@
 // import useSpot from "../../../../hooks/useSpot";
 // import Rating from "./Rating";
-import { useSelector,useDispatch } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router-dom";
 import { useEffect } from "react";
 import './ReserveButton.css'
@@ -22,14 +22,18 @@ function ReserveButton() {
   return (
     <div className="reserve-container">
       <div className="header">
+
         <div className="price">
           ${spot.price} night
         </div>
-        <div className="rating">
-          {rating}
-        </div>
-        <div className="review-quantity">
-          {spot.numReviews ? (<div>{spot.numReviews} {text}</div>) : <div></div>}
+        <div className="rating-and-quantity">
+          <div className="rating">
+            {rating}
+          </div>
+
+          <div className="review-quantity">
+            {spot.numReviews ? (<div>{spot.numReviews} {text}</div>) : <div></div>}
+          </div>
         </div>
       </div>
       <button

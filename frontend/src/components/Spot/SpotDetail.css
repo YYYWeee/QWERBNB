@@ -1,3 +1,9 @@
+.spot-detail-header{
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+
 .img-container {
   display: flex;
   height: 550px;
@@ -43,4 +49,11 @@
 
 .name-and-description{
   width: 80%;
+}
+
+
+
+.description{
+  padding-bottom: 20px;
+  border-bottom: 1px solid rgb(220,220,220);
 }
