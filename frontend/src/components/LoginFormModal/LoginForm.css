@@ -4,3 +4,41 @@ form {
   width: 93%;
   padding: 0px 0px 30px 10px;
 }
+
+.title{
+  text-align: center;
+}
+
+
+
+.logIn-field {
+  width: 90%;
+  height: 20px;
+  margin-bottom: 10px;
+  border: 1px solid black;
+  background-color: rgb(238, 251, 255);
+}
+
+
+
+
+.login-submit-btn {
+  background-color: #DE006F;
+  border: none;
+  color: white;
+  cursor: pointer;
+  font-size: 13px;
+  height: fit-content;
+  width: 92%;
+  padding-top: 14px;
+  padding-bottom: 14px;
+}
+
+.login-demoUser{
+  color:black;
+   text-decoration: underline;
+   margin: 10px;
+}
+.errors {
+  color:red
+}

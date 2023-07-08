@@ -15,8 +15,11 @@
 
 }
 
+h3 {
+  text-align: left
+}
 
-#desscription{
+#desscription {
   height: 400px;
   width: 100%;
 }
@@ -24,7 +27,16 @@
 input {
   width: 100%;
 }
-.submit-btn{
+
+.city-state {
+  display: flex;
+  flex-direction: row;
+
+}
+
+
+
+.submit-btn {
   background-color: rgb(160, 160, 160);
   border: none;
   color: white;
@@ -37,11 +49,40 @@ input {
   height: fit-content;
 
 }
+
 button:disabled {
   cursor: not-allowed;
   pointer-events: all !important;
 }
 
-.errors{
+.errors {
   width: 100%;
+}
+
+
+.city {
+  width: 220%;
+  display: inline-block;
+
+}
+
+.state {
+  width: 220%;
+  display: inline-block;
+
+}
+.city-state{
+  display: flex;
+  flex-direction: row;
+  gap:20px
+}
+.state-city-errors{
+  display: flex;
+  flex-direction: row;
+  /* gap:120px */
+  justify-content: space-around;
+}
+
+.state-city-errors{
+  color: red;
 }
