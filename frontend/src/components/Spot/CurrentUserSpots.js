@@ -99,21 +99,22 @@ function CurrentUserSpots() {
               return (
                 <>
                   <div className="single-spot-container" key={spot.id}>
+                    <div className="single-spot-intro">
+                      <img
+                        className="preview-image"
+                        src={spot.previewImage}
+                        alt={spot.previewImage}
+                        onClick={() => handleClicker(spot.id)}
+                      />
 
-                    <img
-                      className="preview-image"
-                      src={spot.previewImage}
-                      alt={spot.previewImage}
-                      onClick={() => handleClicker(spot.id)}
-                    />
+                      <div className="location_rating" onClick={() => handleClicker(spot.id)}>
+                        <p className="location" onClick={() => handleClicker(spot.id)}>{spot.city}, {spot.state}</p>
 
-                    <div className="location_rating" >
-                      <p className="location" onClick={() => handleClicker(spot.id)}>{spot.city}, {spot.state}</p>
-
-                      {!spot.avgRating == null ? (<p className="rating" onClick={() => handleClicker(spot.id)}> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p onClick={() => handleClicker(spot.id)}>★New</p>)}
-                    </div>
-                    <div className="price" onClick={() => handleClicker(spot.id)}>
-                      <p>${spot.price} night</p>
+                        {!spot.avgRating == null ? (<p className="rating" onClick={() => handleClicker(spot.id)}> <i className="fa-solid fa-star"></i>{spot.avgRating}</p>) : (<p onClick={() => handleClicker(spot.id)}>★New</p>)}
+                      </div>
+                      <div className="price" onClick={() => handleClicker(spot.id)}>
+                        <p onClick={() => handleClicker(spot.id)}>${spot.price} night</p>
+                      </div>
                     </div>
                     <div className="operation">
                       <button className="update-btn" onClick={() => handleUpdate(spot.id)}>
