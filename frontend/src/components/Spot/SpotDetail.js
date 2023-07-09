@@ -24,8 +24,9 @@ function SpotDetail() {
   if (!spot.SpotImages) {
     return null;
   }
-  if (!spot) return null;
-  if (!spot.Owner) return null;
+  // if (!spot) return null;
+  // if (!spot.Owner) return null;
+  if (!spot || !spot.Owner) return null;
 
   return (
     <>

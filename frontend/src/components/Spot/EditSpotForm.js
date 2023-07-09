@@ -188,12 +188,15 @@ function EditSpotForm() {
 
           <h3>Set a base price for your spot</h3>
           <h4>Competitive pricing can help your listing stand out and rank higher in search results.</h4>
-          <label>
-            $
+          <label className="price">
+            <div className="money-sign">
+              $
+            </div>
             <input type='text'
               name='price'
               value={price}
               onChange={(e) => setPrice(e.target.value)}
+              className="money-number"
             />
           </label>
           <p className='errors'>{errors.filter((validation) =>

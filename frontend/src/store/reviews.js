@@ -1,5 +1,5 @@
 import { csrfFetch } from "./csrf";
-
+import { getSpotDetailThunk } from './spots.js'
 
 const GET_REVIEW = "spot/getAllReviews"
 const CREATE_REVIEW = "spot/newReview"
@@ -56,13 +56,17 @@ export const createAReviewThunk = (user, spotId, review, star) => async (dispatc
     //add user key
     newReview.User = user;
     dispatch(createReview(newReview));
+    //just add (now)
+    dispatch(getSpotDetailThunk(spotId.id))
+    //------------------
     return newReview;
   }
 
 };
 
-//now
+
 export const deleteReviewThunk = (id, spotId) => async (dispatch) => {
+  console.log('delete thunk',spotId)
   const res = await csrfFetch(`/api/reviews/${id}`, {
     method: "DELETE",
     headers: { "Content-Type": "application/json" }
@@ -70,6 +74,10 @@ export const deleteReviewThunk = (id, spotId) => async (dispatch) => {
 
   if (res.ok) {
     dispatch(deleteReview(id));
+
+    dispatch(getSpotDetailThunk(spotId))
+
+
   }
 };
 

@@ -71,18 +71,27 @@ button:disabled {
   display: inline-block;
 
 }
-.city-state{
+
+.city-state {
   display: flex;
   flex-direction: row;
-  gap:20px
+  gap: 20px
 }
-.state-city-errors{
+
+.state-city-errors {
   display: flex;
   flex-direction: row;
   /* gap:120px */
   justify-content: space-around;
 }
 
-.state-city-errors{
+.state-city-errors {
   color: red;
+}
+
+
+.price {
+  display: flex;
+  flex-direction: row;
+  gap: 20px
 }
