@@ -73,11 +73,17 @@
   gap: 10px;
   align-items: baseline;
 }
+
 .rating {
   cursor: pointer;
 }
-p{
 
-    cursor: pointer;
+p {
 
+  cursor: pointer;
+
+}
+
+.single-spot-intro {
+  cursor: pointer;
 }

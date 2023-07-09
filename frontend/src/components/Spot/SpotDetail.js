@@ -86,11 +86,9 @@ function SpotDetail() {
               </div>
             </div>
 
-
-
             <div className="review-container">
-
-              {spot.Owner.id !== user.id && <ReviewButton id={id} />}   {/* ID is spot id from url *****rearrangement*/}
+              {/* {spot.Owner.id !== user.id && <ReviewButton id={id} />} */}
+               {/* ID is spot id from url *****rearrangement*/}
               <Review />
 
             </div>

@@ -5,15 +5,23 @@ import { useSelector } from 'react-redux';
 import ProfileButton from './ProfileButton';
 import './Navigation.css';
 import logo from "./logo.png";
+import { useHistory } from "react-router-dom";
+
 
 function Navigation({ isLoaded }) {
+  const history = useHistory();
   const sessionUser = useSelector(state => state.session.user);
+
+  const handleClicker = () => {
+    let path = `/`;
+    history.push(path)
+  }
 
   return (
     <ul>
       <div className="nav-container">
         <div className="logo-container">
-          <img src={logo} alt="logo" width="30" height="30" />
+          <img src={logo} alt="logo" width="30" height="30" onClick={() => handleClicker()} className='logo' />
           <NavLink exact to="/" id='QWERBNB'>
             <h2>QWERBNB</h2>
           </NavLink>

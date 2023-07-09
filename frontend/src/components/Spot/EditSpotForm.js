@@ -203,7 +203,7 @@ function EditSpotForm() {
             validation.includes("Price"))}</p>
 
           <button
-            className="update-btn"
+            className="update-button"
             type="submit"
             disabled={errors.length > 0}
           >

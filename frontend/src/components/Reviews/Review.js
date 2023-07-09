@@ -9,6 +9,7 @@ import DeleteReviewModal from '../DeleteReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import OpenModalMenuItemForReview from "../OpenModalMenuItemForReview/OpenModalMenuItemForReview"
 import './Review.css'
+import ReviewButton from '../Reviews/ReviewButton'
 
 function dateConvert(date) {
   const month = ['January', 'February', 'March', 'April', 'May', 'June', 'July', 'August', 'September', 'October', 'November', 'December'];
@@ -28,8 +29,8 @@ function Review() {
   const spot = useSelector((state) => state.spots.spot); //extract avgStarRating
   let unit;
 
-  console.log('spotId!!!!!',id)
-  console.log(typeof(id))
+  console.log('spotId!!!!!', id)
+  console.log(typeof (id))
 
 
   const [showMenu, setShowMenu] = useState(false);
@@ -111,7 +112,8 @@ function Review() {
           {reviews.length > 0 ?
             (<h2> <i className="fa-solid fa-star"></i> {spot.avgStarRating}  . {reviews.length} {unit} </h2>) : (<h2>new</h2>)
           }
-
+          {/* now */}
+          {<div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>}
           {reviews.sort((a, b) => {
             const dateA = new Date(a.updatedAt);
             const dateB = new Date(b.updatedAt);
@@ -137,7 +139,7 @@ function Review() {
                 </div> */}
 
                 <div className="delete-review-button">
-                  {user && review.userId === user.id  &&
+                  {user && review.userId === user.id &&
                     (<OpenModalMenuItemForReview
                       itemText="Delete"
                       onItemClick={closeMenu}
@@ -153,7 +155,10 @@ function Review() {
           )}
 
         </div>) : (
-          <h2> <i className="fa-solid fa-star"></i>New</h2>
+          <>
+            <h2> <i className="fa-solid fa-star"></i>New</h2>
+            <div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>
+          </>
         )
       }
     </>
