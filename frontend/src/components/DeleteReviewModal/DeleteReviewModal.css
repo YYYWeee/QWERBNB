@@ -3,6 +3,15 @@
   width: 300px;
 }
 
+
+.title{
+text-align: center;
+}
+
+.sub-title{
+  text-align: center;
+}
+
 .Yes-delete-button {
   background-color: #DE006F;
   border: none;

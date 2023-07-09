@@ -5,6 +5,8 @@ import { useModal } from "../../context/Modal";
 import * as sessionActions from "../../store/session";
 import "./SignupForm.css";
 
+
+
 function SignupFormModal() {
   const dispatch = useDispatch();
   const [email, setEmail] = useState("");
@@ -45,6 +47,8 @@ function SignupFormModal() {
         .catch(async (res) => {
           const data = await res.json();
           if (data && data.errors) {
+            console.log(data)
+            setErrors(data.errors);
           }
         });
     }
@@ -57,6 +61,15 @@ function SignupFormModal() {
     <>
       <div className="signup-container">
         <h1>Sign Up</h1>
+        {/* <div className="error-container">
+          {errors.email && <p className="errors">{errors.email}</p>}
+          {errors.username && <p className="errors">{errors.username}</p>}
+          {errors.firstName && <p className="errors">{errors.firstName}</p>}
+          {errors.lastName && <p className="errors">{errors.lastName}</p>}
+          {errors.password && <p className="errors">{errors.password}</p>}
+
+        </div> */}
+
         <form onSubmit={handleSubmit}>
           <label>
 
@@ -126,11 +139,14 @@ function SignupFormModal() {
               value={confirmPassword}
               onChange={(e) => setConfirmPassword(e.target.value)}
               required
+              placeholder="Confirm Password "
             />
           </label>
           {errors.confirmPassword && (
             <p className="errors">{errors.confirmPassword}</p>
           )}
+
+
           <button className="sign-up-btn" type="submit" disabled={disabled}>Sign Up</button>
         </form>
       </div>

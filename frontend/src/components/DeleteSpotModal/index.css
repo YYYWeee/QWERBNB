@@ -4,8 +4,8 @@
 
 }
 
-h3{
- text-align: center;
+h3 {
+  text-align: center;
 }
 
 
@@ -19,7 +19,6 @@ h3{
   width: 80%;
   padding: 14px 14px 14px 14px;
   margin: auto
-
 }
 
 .No-delete-button {
@@ -32,7 +31,6 @@ h3{
   width: 80%;
   padding: 14px 14px 14px 14px;
   margin: auto
-
 }
 
 .button-container {
@@ -41,4 +39,15 @@ h3{
   gap: 20px;
 
 
+}
+
+
+
+
+.title {
+  text-align: center;
+}
+
+.sub-title {
+  text-align: center;
 }
