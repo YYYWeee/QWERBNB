@@ -45,7 +45,7 @@ div {
   display: flex;
   flex-direction: column;
   right: 0;
-  border-radius: 12px;
+  /* border-radius: 12px; */
   box-shadow: 0px 0px 13px 1px rgba(0, 0, 0, 0.1);
   width: 50px;
   margin-right: 40px;
@@ -80,12 +80,9 @@ div {
 #manage-your-spots {
   text-decoration: none;
   color: black;
-  border-top: solid black 1px;
 }
 
-.logout-btn {
-  border-top: solid black 1px;
-}
+
 
 .fa-user-circle {
   margin-top: 8px;
@@ -97,11 +94,23 @@ div {
 
 }
 
-.profile-dropdown {
-  width: 250%;
-  height: 100px;
-  /* margin-top: 10px; */
-  /* width: 100%; */
+
+
+.profile-dropdownactive {
+
+
+  position: absolute;
+  top: 150%;
+  /* border: 2px solid rgb(221, 221, 221); */
+  width: 150px;
+  right: 2px;
+  background-color: white;
+  box-shadow: rgb(221, 221, 221) 4px 4px 20px;
+  border-radius: 12px;
+  display: flex;
+  flex-direction: column;
+  align-items: start;
+  z-index: 7;
 }
 
 .create-new-spot-button {
@@ -121,9 +130,19 @@ div {
   gap: 150px;
 }
 
+.hello,
+.email {
+  padding-left: 10px;
+}
+
+#manage-your-spots,
+#logout-button {
+  padding-left: 10px;
+}
 
 
-#logout-button{
+#logout-button {
+  border-radius: 190px;
   background-color: rgb(160, 160, 160);
   border: none;
   color: white;
@@ -134,6 +153,7 @@ div {
   font-size: 14px;
   font-family: sans-serif;
   height: fit-content;
-  margin-top:10px ;
-  margin-left:10px ;
+  margin-top: 10px;
+  margin-left: 10px;
+  margin-bottom: 10px;
 }
