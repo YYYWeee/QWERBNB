@@ -66,10 +66,10 @@ function ProfileButton({ user }) {
               <div>{user.email}</div> */}
               {/* <p>{user.username}</p> */}
 
-              <p>
+              <p className="hello">
                 Hello {user.firstName} {user.lastName}
               </p>
-              <p>{user.email}</p>
+              <p className="email">{user.email}</p>
               <NavLink
                 exact
                 to="/spots/current"
