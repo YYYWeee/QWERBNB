@@ -19,13 +19,13 @@ It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots 
 ## List of technologies used on the project.
 
 ### Frontend
- React
+ React,
  Redux
   
 ### Backend
- Express
- Sequelize
- Sqlite3
+ Express,
+ Sequelize,
+ Sqlite3,
  PostgreSQL
 
 ## API Documentation
