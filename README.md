@@ -6,8 +6,7 @@ It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots 
 ![Screenshot 2023-07-08 at 10 29 02 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/6cd8a7de-6b28-4c2c-a377-e184d5bde895)
 ![Screenshot 2023-07-08 at 10 30 31 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/cfc42b31-6eaa-4963-9054-19fa64257057)
 
-## Database Schema Design
-
+## Database Schema Designx
 <!--!!START SILENT -->
 ![airbnb-database-schema]
 
@@ -17,13 +16,13 @@ It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots 
 <!--!!ADD -->
 <!-- `<insert database schema design here>` -->
 <!--!!END_ADD -->
-##List of technologies used on the project.
+## List of technologies used on the project.
 
-###Frontend
+### Frontend
  React
  Redux
   
-###Backend
+### Backend
  Express
  Sequelize
  Sqlite3
