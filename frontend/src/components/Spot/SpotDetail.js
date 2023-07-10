@@ -81,13 +81,12 @@ function SpotDetail() {
               </div>
               <div className="reserve-button">
                 <ReserveButton />
-                {/* now */}
 
               </div>
             </div>
 
             <div className="review-container">
-              {/* {spot.Owner.id !== user.id && <ReviewButton id={id} />} */}
+              {spot.Owner.id !== user.id && <ReviewButton id={id} />}
                {/* ID is spot id from url *****rearrangement*/}
               <Review />
 
