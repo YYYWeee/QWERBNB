@@ -6,7 +6,7 @@ It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots 
 ![Screenshot 2023-07-08 at 10 29 02 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/6cd8a7de-6b28-4c2c-a377-e184d5bde895)
 ![Screenshot 2023-07-08 at 10 30 31 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/cfc42b31-6eaa-4963-9054-19fa64257057)
 
-## Database Schema Designx
+## Database Schema Design
 <!--!!START SILENT -->
 ![airbnb-database-schema]
 
