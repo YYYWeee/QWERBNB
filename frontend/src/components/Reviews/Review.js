@@ -113,7 +113,7 @@ function Review() {
             (<h2> <i className="fa-solid fa-star"></i> {spot.avgStarRating}  . {reviews.length} {unit} </h2>) : (<h2>new</h2>)
           }
           {/* now */}
-          {<div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>}
+          {/* {<div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>} */}
           {reviews.sort((a, b) => {
             const dateA = new Date(a.updatedAt);
             const dateB = new Date(b.updatedAt);
@@ -157,7 +157,7 @@ function Review() {
         </div>) : (
           <>
             <h2> <i className="fa-solid fa-star"></i>New</h2>
-            <div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>
+            {/* <div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div> */}
           </>
         )
       }
