@@ -18,10 +18,14 @@ It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots 
 <!-- `<insert database schema design here>` -->
 <!--!!END_ADD -->
 ##List of technologies used on the project.
+
 ###Frontend
+
   *React
   *Redux
+  
 ###Backend
+
   *Express
   *Sequelize
   *Sqlite3
