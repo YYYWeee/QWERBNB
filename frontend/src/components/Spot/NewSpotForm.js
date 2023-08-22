@@ -29,6 +29,10 @@ function NewSpotForm() {
   const [errors, setErrors] = useState([]);
   const dispatch = useDispatch();
 
+  const handlePrice = e => {
+    if (e.target.value <100000  && /^[0-9]*$/.test(e.target.value)) setPrice(e.target.value)
+  }
+
 
   useEffect(() => {
     const errorsArray = [];
@@ -198,7 +202,8 @@ function NewSpotForm() {
             <input type='text'
               name='price'
               value={price}
-              onChange={(e) => setPrice(e.target.value)}
+              // onChange={(e) => setPrice(e.target.value)}
+              onChange={handlePrice}
               placeholder="Price per night (USD)"
               className="money-number"
             />
