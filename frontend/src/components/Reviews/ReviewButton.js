@@ -4,6 +4,9 @@ import PostReviewModal from '../PostReviewModal';
 import OpenModalMenuItem from '../Navigation/OpenModalMenuItem';
 import OpenModalMenuItemForReview from "../OpenModalMenuItemForReview/OpenModalMenuItemForReview"
 
+import './ReviewButton.css'
+
+
 function ReviewButton({ id }) {
   const user = useSelector((state) => state.session.user);
   const reviews = useSelector((state) => state.reviews.reviews);
