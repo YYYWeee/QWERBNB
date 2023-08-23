@@ -95,11 +95,13 @@ const Home = ({ spot, apiKey }) => {
           <GoogleMap
             mapContainerStyle={containerStyle}
             // center={center}
-            center={{ lat: -34.397, lng: 150.644 }}
+            // center={{ lat: -34.397, lng: 150.644 }}
+            center={{ lat: spot.lat, lng: spot.lng }}
             zoom={10}
           >
             {/* <Marker position={center} /> */}
-            <Marker position={{ lat: -34.397, lng: 150.644 }} />
+            {/* <Marker position={{ lat: -34.397, lng: 150.644 }} */}
+            <Marker position={{ lat: spot.lat, lng: spot.lng }} />
           </GoogleMap>
         </div >
       )}
