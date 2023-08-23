@@ -23,7 +23,9 @@ export default function Home({ spot, apiKey }) {
   const { isLoaded } = useLoadScript({
     googleMapsApiKey: apiKey
   });
+
   if (!isLoaded) return <div>Loading...</div>;
+
   return <Map targetSpot={spot} myApiKey={apiKey} />;
 }
 
@@ -31,38 +33,38 @@ export default function Home({ spot, apiKey }) {
 
 
 function Map({ targetSpot, myApiKey }) {
-  const [lat, setLat] = useState(targetSpot.lat);
-  const [lng, setLng] = useState(targetSpot.lng);
+  // const [lat, setLat] = useState(targetSpot.lat);
+  // const [lng, setLng] = useState(targetSpot.lng);
 
-  console.log('lat&lng', lat, lng)
+  // console.log('lat&lng', lat, lng)
 
-  if (!targetSpot.lat || !targetSpot.lng) {
-    let address = targetSpot.address
-    let city = targetSpot.city
-    let state = targetSpot.state
-    let country = targetSpot.country
-    let fullAddress = targetSpot.address + ' ' + targetSpot.city + ' ' + targetSpot.state + ' ' + country
-
-
-    Geocode.setApiKey(myApiKey)
-    // console.log('fullAddress!!!!!', fullAddress)
-    Geocode.fromAddress(fullAddress).then(
-      (response) => {
-        const { lat, lng } = response.results[0].geometry.location;
-        setLat(lat.toFixed(3));
-        setLng(lng.toFixed(3));
-
-      },
-      (error) => {
-        console.error(error);
-      }
-    );
-  }
+  // if (!targetSpot.lat || !targetSpot.lng) {
+  //   let address = targetSpot.address
+  //   let city = targetSpot.city
+  //   let state = targetSpot.state
+  //   let country = targetSpot.country
+  //   let fullAddress = targetSpot.address + ' ' + targetSpot.city + ' ' + targetSpot.state + ' ' + country
 
 
-  // const center = useMemo(() => ({ lat: targetSpot.lat, lng: targetSpot.lng }), []);
+  //   Geocode.setApiKey(myApiKey)
+  //   // console.log('fullAddress!!!!!', fullAddress)
+  //   Geocode.fromAddress(fullAddress).then(
+  //     (response) => {
+  //       const { lat, lng } = response.results[0].geometry.location;
+  //       setLat(lat.toFixed(3));
+  //       setLng(lng.toFixed(3));
+
+  //     },
+  //     (error) => {
+  //       console.error(error);
+  //     }
+  //   );
+  // }
+
+
+  const center = useMemo(() => ({ lat: targetSpot.lat, lng: targetSpot.lng }), []);
   // const center = useMemo(() => ({ lat: parseFloat(lat), lng: parseFloat(lng)}), []);
-  const center = useMemo(() => ({ lat: lat, lng: lng }), []);
+  // const center = useMemo(() => ({ lat: lat, lng: lng }), []);
 
   return (
     <>

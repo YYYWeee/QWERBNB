@@ -121,7 +121,7 @@ function SpotDetail() {
                 <div className="listing-page-map">
 
                   {/* <ListingMapWrapper listings={[spot]} mapOptions={{ center: { lat: spotLat, lng: spotLng }, zoom: 16 }}></ListingMapWrapper> */}
-                  <Home spot={spot} apiKey={key} />
+                  {/* <Home spot={spot} apiKey={key} /> */}
                 </div>
               </div>
 
@@ -195,7 +195,7 @@ function SpotDetail() {
             <div className="listing-page-map">
 
               {/* <ListingMapWrapper listings={[spot]} mapOptions={{ center: { lat: spotLat, lng: spotLng }, zoom: 16 }}></ListingMapWrapper> */}
-              <Home spot={spot} apiKey={key} />
+              {/* <Home spot={spot} apiKey={key} /> */}
 
             </div>
           </div>
