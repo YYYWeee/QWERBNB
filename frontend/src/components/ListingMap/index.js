@@ -1,85 +1,80 @@
+import React from 'react';
 import Geocode from "react-geocode"
-import { useMemo } from "react";
-import { GoogleMap, useLoadScript, Marker } from "@react-google-maps/api";
-import { useState } from "react";
-import { useEffect } from "react";
-import { useParams } from "react-router-dom";
-import { useDispatch, useSelector } from "react-redux";
-import { getSpotDetailThunk } from "../../store/spots";
-
+import { GoogleMap, useJsApiLoader } from '@react-google-maps/api';
+import { Marker } from "@react-google-maps/api";
 import './ListingMap.css'
 
 
-
-export default function Home({ spot, apiKey }) {
-  const { id } = useParams();
-  const dispatch = useDispatch();
-
-  useEffect(() => {
-    dispatch(getSpotDetailThunk(id));
-  }, [dispatch, id]);
+const containerStyle = {
+  width: '90%',
+  height: '70vh',
+  margin: 'auto',
+};
 
 
-  const { isLoaded } = useLoadScript({
-    googleMapsApiKey: apiKey
+
+const Home = ({ spot, apiKey }) => {
+  let center;
+  const { isLoaded } = useJsApiLoader({
+    id: 'google-map-script',
+    googleMapsApiKey: apiKey,
   });
 
-  if (!isLoaded) return <div>Loading...</div>;
+  if (!spot.lat || !spot.lng) {
+    let address = spot.address
+    let city = spot.city
+    let state = spot.state
+    let country = spot.country
+    let fullAddress = spot.address + ' ' + spot.city + ' ' + spot.state + ' ' + country
 
-  return <Map targetSpot={spot} myApiKey={apiKey} />;
-}
-
-
-
-
-function Map({ targetSpot, myApiKey }) {
-  const [lat, setLat] = useState(targetSpot.lat);
-  const [lng, setLng] = useState(targetSpot.lng);
-
-  console.log('lat & lng', lat, lng)
-
-  if (!targetSpot.lat || !targetSpot.lng) {
-    let address = targetSpot.address
-    let city = targetSpot.city
-    let state = targetSpot.state
-    let country = targetSpot.country
-    let fullAddress = targetSpot.address + ' ' + targetSpot.city + ' ' + targetSpot.state + ' ' + country
-
-
-    Geocode.setApiKey(myApiKey)
+    Geocode.setApiKey(apiKey)
     Geocode.fromAddress(fullAddress).then(
       (response) => {
         const { lat, lng } = response.results[0].geometry.location;
-        setLat(lat.toFixed(3));
-        setLng(lng.toFixed(3));
+        center = {
+          lat: lat,
+          lng: lng,
+        };
+        console.log('I dont have lng lat', center)
+
       },
       (error) => {
         console.error(error);
       }
     );
+
+  } else {
+    center = {
+      lat: spot.lat,
+      lng: spot.lng,
+    };
   }
 
-
-  // const center = useMemo(() => ({ lat: targetSpot.lat, lng: targetSpot.lng }), []);
-  // const center = useMemo(() => ({ lat: parseFloat(lat), lng: parseFloat(lng)}), []);
-  const center = useMemo(() => ({ lat: lat, lng: lng }), []);
+  // let center = {
+  //   lat: spot.lat,
+  //   lng: spot.lng,
+  // };
 
   return (
     <>
-      <div className="parent">
-        <div className="location-info">
+      {isLoaded && (
+
+        <div className='location-info'>
           <div className="location-info-header">
             <h1 className="location-info-title">Where you'll be</h1>
-            <h2>{targetSpot.city}, {targetSpot.state}, {targetSpot.country}</h2>
+            <h2 className='sub-title'>{spot.city}, {spot.state}, {spot.country}</h2>
           </div>
+          <GoogleMap
+            mapContainerStyle={containerStyle}
+            center={center}
+            zoom={10}
+          >
+            <Marker position={center} />
+          </GoogleMap>
         </div>
-
-        <GoogleMap zoom={10} center={center} mapContainerClassName="map-container">
-          <Marker position={center} />
-        </GoogleMap>
-      </div>
-
-
+      )}
     </>
   );
-}
+};
+
+export default React.memo(Home);

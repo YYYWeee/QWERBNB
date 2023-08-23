@@ -12,6 +12,7 @@
 .review-container{
   display: grid;
   gap: 1px;
+  margin-left: 60px;
 
 }
 
