@@ -72,12 +72,16 @@ const Home = ({ spot, apiKey }) => {
           console.error(error);
         }
       );
+      console.log('I dont have lng lat', center)
     } else {
       setCenter({ lat: spot.lat, lng: spot.lng });
+      console.log('I  have lng lat', center)
+      console.log('the type of coordinates',typeof center.lat)
+      console.log('the type of coordinates',typeof center.lng)
     }
   }, [spot, apiKey]);
 
-
+  // position={{lat:list.latitute, lng:list.longitude}}
   return (
     <>
       {isLoaded && (
@@ -87,14 +91,15 @@ const Home = ({ spot, apiKey }) => {
             <h1 className="location-info-title">Where you'll be</h1>
             <h2 className='sub-title'>{spot.city}, {spot.state}, {spot.country}</h2>
             {spot.lat} {spot.lng}
-
           </div>
           <GoogleMap
             mapContainerStyle={containerStyle}
-            center={center}
+            // center={center}
+            center={{ lat: -34.397, lng: 150.644 }}
             zoom={10}
           >
-            <Marker position={center} />
+            {/* <Marker position={center} /> */}
+            <Marker position={{ lat: -34.397, lng: 150.644 }} />
           </GoogleMap>
         </div >
       )}
