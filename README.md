@@ -1,5 +1,5 @@
 # QWERBNB
-QWERBNB is a progect aims to build a clone of AirBnB.
+QWERBNB is a project aims to build a clone of AirBnB.
 It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots and Reviews.
 
 ![Screenshot 2023-07-08 at 10 28 39 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/5a415339-2523-4146-937c-f62e336470ca)
