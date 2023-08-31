@@ -38,12 +38,6 @@ function ReviewButton({ id }) {
 
 
 
-  // if (!reviews) {
-  //   return null;
-  // }
-  // if (!reviews[0]) {
-  //   return null;
-  // }
 
   if (reviews[0] !== null) {
     console.log('here')

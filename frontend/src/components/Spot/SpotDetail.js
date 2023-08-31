@@ -18,7 +18,7 @@ function SpotDetail() {
 
   const { id } = useParams();
 
-  // const ID = parseInt(id)
+
   const dispatch = useDispatch();
   const key = useSelector((state) => state.maps.key);
   const spot = useSelector((state) => state.spots.spot);
