@@ -9,7 +9,7 @@ import './ListingMap.css'
 const containerStyle = {
   width: '90%',
   height: '70vh',
-  margin: 'auto',
+  // margin: 'auto',
 };
 
 
@@ -90,7 +90,7 @@ const Home = ({ spot, apiKey }) => {
           <div className="location-info-header">
             <h1 className="location-info-title">Where you'll be</h1>
             <h2 className='sub-title'>{spot.city}, {spot.state}, {spot.country}</h2>
-            {spot.lat} {spot.lng}
+            {/* {spot.lat} {spot.lng} */}
           </div>
           <GoogleMap
             mapContainerStyle={containerStyle}
