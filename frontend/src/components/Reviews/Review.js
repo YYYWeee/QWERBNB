@@ -107,52 +107,55 @@ function Review() {
   return (
     <>
       {reviews[0] ?
-        (<div className="review-container">
-
-          {reviews.length > 0 ?
-            (<h2> <i className="fa-solid fa-star"></i> {spot.avgStarRating}  . {reviews.length} {unit} </h2>) : (<h2>new</h2>)
-          }
-          {/* now */}
-          {/* {<div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>} */}
-          {reviews.sort((a, b) => {
-            const dateA = new Date(a.updatedAt);
-            const dateB = new Date(b.updatedAt);
-            return dateB - dateA;
-          }).map((review) => {
-            return (
-              <div className="single-review" key={review.id}>
-                <div className="name">
-                  {review.User.firstName}-{review.User.lastName}
-                </div>
-                <div className="date">
-                  {dateConvert(review.updatedAt)}
-                </div>
-
-
-                <div className="text">
-                  <p>{review.review}</p>
-                </div>
+        (<div className="review-container-component">
+          <div className="review-container-title">
+            {reviews.length > 0 ?
+              (<h2> <i className="fa-solid fa-star"></i> {spot.avgStarRating}  . {reviews.length} {unit} </h2>) : (<h2>new</h2>)
+            }
+          </div>
+          <div className="review-container-main">
+            {/* now */}
+            {/* {<div className="btn-container">{spot.Owner.id !== user.id && <ReviewButton id={id} />}</div>} */}
+            {reviews.sort((a, b) => {
+              const dateA = new Date(a.updatedAt);
+              const dateB = new Date(b.updatedAt);
+              return dateB - dateA;
+            }).map((review) => {
+              return (
+                <div className="single-review" key={review.id}>
+                  <div className="name">
+                    {review.User.firstName}-{review.User.lastName}
+                  </div>
+                  <div className="date">
+                    {dateConvert(review.updatedAt)}
+                  </div>
 
 
-                {/* <div className="delete-review-button">
+                  <div className="text">
+                    <p>{review.review}</p>
+                  </div>
+
+
+                  {/* <div className="delete-review-button">
                   {user && review.userId === user.id && <button onClick={() => handleDelete(review.id, id)} className="delete-review-button">delete</button>}
                 </div> */}
 
-                <div className="delete-review-button">
-                  {user && review.userId === user.id &&
-                    (<OpenModalMenuItemForReview
-                      itemText="Delete"
-                      onItemClick={closeMenu}
-                      modalComponent={<DeleteReviewModal id={review.id} spotId={id} />}
-                    />)}
+                  <div className="delete-review-button">
+                    {user && review.userId === user.id &&
+                      (<OpenModalMenuItemForReview
+                        itemText="Delete"
+                        onItemClick={closeMenu}
+                        modalComponent={<DeleteReviewModal id={review.id} spotId={id} />}
+                      />)}
+
+                  </div>
+
 
                 </div>
-
-
-              </div>
-            )
-          }
-          )}
+              )
+            }
+            )}
+          </div>
 
         </div>) : (
           <>

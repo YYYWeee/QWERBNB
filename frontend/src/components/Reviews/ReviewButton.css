@@ -1,8 +1,6 @@
 .post-review-button {
   display: flex;
   flex-direction: column;
-  justify-content: end;
   align-items: flex-start;
-  padding-left: 50px;
-  /* border-left: 200px; */
+
 }
