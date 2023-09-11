@@ -27,7 +27,9 @@ function SpotDetail() {
   const spotLng = useSelector((state) => state.spots.spot.lng);
 
   useEffect(() => {
-    dispatch(getSpotDetailThunk(id));
+    dispatch(getSpotDetailThunk(id)).then(()=>{
+      window.scrollTo(0, 0);
+    })
   }, [dispatch, id]);
 
 
