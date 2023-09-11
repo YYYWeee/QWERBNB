@@ -8,6 +8,18 @@ import './Spots.css'
 import { useHistory } from "react-router-dom";
 import Tooltip from "./Tooltip";
 
+
+function randomPick(array) {
+  const newArray = [...array];
+  for (let i = newArray.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [newArray[i], newArray[j]] = [newArray[j], newArray[i]];
+  }
+  return newArray;
+}
+
+
+
 function Spots() {
   const history = useHistory();
   const dispatch = useDispatch();
@@ -16,6 +28,7 @@ function Spots() {
   const handleClicker = (id) => {
     let path = `/spots/${id}`;
     history.push(path)
+
   }
 
   useEffect(() => {
@@ -23,6 +36,11 @@ function Spots() {
   }, [dispatch]);
 
   if (!spots) return null;
+
+  spots.sort(() => Math.random() - 0.5);
+  const shuffledItems = randomPick(spots);
+
+
 
   return (
     <>
