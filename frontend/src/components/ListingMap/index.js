@@ -105,6 +105,7 @@ const Home = ({ spot, apiKey }) => {
             position={{ lat: Number(spot.lat), lng: Number(spot.lng)  }}
             icon={{
               url: 'https://cdn.discordapp.com/attachments/1138525166754877607/1149802455337545748/marker.png',
+
             }} />
           </GoogleMap>
         </div >
