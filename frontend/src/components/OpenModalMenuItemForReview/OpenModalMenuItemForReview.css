@@ -1,5 +1,5 @@
 .button-OpenModalMenuItem{
-  background-color:rgb(160,160,160);
+  /* background-color:rgb(160,160,160);
   border: none;
   color: white;
   padding: 10px 15px;
@@ -7,6 +7,15 @@
   font-weight: bold;
   display: inline-block;
   font-size: 14px;
-  font-family: sans-serif;
+  font-family: sans-serif; */
+  background: #ff5a5f;
+  border: none;
+  border-radius: 10px;
+  color: #fff;
+  cursor: pointer;
+  font-weight: 700;
+  height: 40px;
+  padding: 10px;
+  width: 120px;
 
 }
