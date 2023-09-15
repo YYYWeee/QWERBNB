@@ -122,9 +122,11 @@ function Review() {
               return dateB - dateA;
             }).map((review) => {
               return (
+
                 <div className="single-review" key={review.id}>
+
                   <div className="name">
-                    {review.User.firstName}-{review.User.lastName}
+                  <i class="fa-solid fa-circle-user fa-lg"></i>  {review.User.firstName}-{review.User.lastName}
                   </div>
                   <div className="date">
                     {dateConvert(review.updatedAt)}
