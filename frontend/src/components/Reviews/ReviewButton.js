@@ -73,7 +73,7 @@ function ReviewButton({ id }) {
         (<div className="post-review-button">
           <p>
             <OpenModalMenuItemForReview
-              itemText="Post your review"
+              itemText="Add a review"
               onItemClick={closeMenu}
               modalComponent={<PostReviewModal id={id} />}
             />
@@ -84,7 +84,7 @@ function ReviewButton({ id }) {
         (<div className="post-review-button">
           <p>
             <OpenModalMenuItemForReview
-              itemText="Post your review"
+              itemText="Add a review"
               onItemClick={closeMenu}
               modalComponent={<PostReviewModal id={id} />}
             />
