@@ -2,12 +2,16 @@
   color: rgb(160,160,160);
 }
 .single-review{
-
+  background-color: #F8F8F8;
   width: 45%;
+  min-height: 160px;
   display: flex;
   flex-flow: column wrap;
   justify-content: flex-start;
   margin: 0 30px 40px 0;
+  border-radius: 16px;
+  overflow-y: scroll;
+  padding: 12px;
 }
 
 .review-container-main{
@@ -28,7 +32,7 @@
 } */
 
 
-.single-review{
+/* .single-review{
 
   background-color: #F8F8F8;
   display: flex;
@@ -37,4 +41,4 @@
   height: 140px;
   overflow-y: scroll;
   padding: 12px;
-}
+} */
