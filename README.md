@@ -3,8 +3,7 @@ QWERBNB is a project aims to build a clone of AirBnB.
 It focus on two main CRUD (Create, Read, Update, Delete) functionality on Spots and Reviews.
 
 ![Screenshot 2023-07-08 at 10 28 39 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/5a415339-2523-4146-937c-f62e336470ca)
-![Screenshot 2023-07-08 at 10 29 02 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/6cd8a7de-6b28-4c2c-a377-e184d5bde895)
-![Screenshot 2023-07-08 at 10 30 31 AM](https://github.com/YYYWeee/QWERBNB/assets/63111667/cfc42b31-6eaa-4963-9054-19fa64257057)
+![2023-09-22 23 02 35](https://github.com/YYYWeee/QWERBNB/assets/63111667/95347ff7-6840-44de-b5ca-64bb061913da)
 
 ## Database Schema Design
 <!--!!START SILENT -->
